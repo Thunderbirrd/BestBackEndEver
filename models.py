@@ -44,3 +44,4 @@ class Teacher(db.Model, Model):
     phone = db.Column(db.Integer)
     email = db.Column(db.Integer)
     password = db.Column(db.String)
+    is_admin = db.Column(db.Boolean)
