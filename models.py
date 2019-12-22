@@ -27,15 +27,16 @@ class Pupil(db.Model, Model):
     name = db.Column(db.String)
     surname = db.Column(db.String)
     permit = db.Column(db.Integer, unique=True)
+    login = db.Column(db.String, unique=True)
     password = db.Column(db.String)
 
 
 class Parent(db.Model, Model):
     id = db.Column(db.Integer, primary_key=True, unique=True, autoincrement=True)
     child = db.Column(db.Integer, key=Pupil.id)
+    login = db.Column(db.String, unique=True)
     password = db.Column(db.String)
     
-
 
 class Teacher(db.Model, Model):
     id = db.Column(db.Integer, primary_key=True, unique=True, autoincrement=True)
@@ -43,5 +44,6 @@ class Teacher(db.Model, Model):
     qualification = db.Column(db.String)
     phone = db.Column(db.Integer)
     email = db.Column(db.Integer)
+    login = db.Column(db.String, unique=True)
     password = db.Column(db.String)
     is_admin = db.Column(db.Boolean)
