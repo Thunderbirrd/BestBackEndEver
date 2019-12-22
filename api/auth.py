@@ -16,9 +16,6 @@ def logout():
     return "somebody"
 
 
-
-
-
 @app.route("/auth/pupil_login", methods=["GET"])
 def pupil_login():
 
@@ -100,7 +97,7 @@ def register():
         password = request.form.get("password")
         name = request.form.get("name")
         surname = request.form.get("surname")
-        position = request.form.get("type")
+        position = request.form.get("position")
 
         if position == "Teacher":
             teacher = Teacher.auth(login, password)
@@ -187,3 +184,8 @@ def register():
                     }
                 }
             )
+
+
+@app.route('/')
+def hello_world():
+    return 'hello world!'
