@@ -3,6 +3,7 @@ from flask import session
 from datetime import datetime
 from sqlalchemy import func, asc
 import json
+import random
 
 
 class Model:
@@ -38,6 +39,7 @@ class Pupil(db.Model, Model):
         self.password = ""
         self.school_class = clas
         self.position = "Pupil"
+        self.permit = int(str(self.id) + str(random.randint(1, 1000)))
 
     @staticmethod
     def auth(login, password):
@@ -89,6 +91,7 @@ class Teacher(db.Model, Model):
         self.email = email
         self.is_admin = is_admin
         self.position = "Teacher"
+        self.permit = int(str(self.id) + str(random.randint(1, 1000)))
 
     @staticmethod
     def auth(login, password):
