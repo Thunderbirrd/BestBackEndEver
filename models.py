@@ -63,6 +63,9 @@ class SchoolClass(db.Model, Model):
         self.students_list = list(students_list)
         self.teacher = teacher
 
+    def get_students_list(self):
+        return self.students_list
+
 
 class Subject(db.Model, Model):
     id = db.Column(db.Integer, primary_key=True, unique=True)
@@ -77,6 +80,9 @@ class Subject(db.Model, Model):
         self.students_list = list(students_list)
         self.homework = ""
         self.teacher = teacher
+
+    def get_students_list(self):
+        return self.students_list
 
 
 class Pupil(db.Model, Model):
@@ -140,3 +146,12 @@ class School:
         self.classes = classes
         self.teachers = teachers
         self.pupils = pupils
+
+    def get_list_teachers(self):
+        return self.teachers
+
+    def get_list_classes(self):
+        return self.classes
+
+    def get_list_pupils(self):
+        return self.pupils
