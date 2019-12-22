@@ -91,7 +91,7 @@ class SchoolClass(db.Model, Model):
     teacher = db.relationship(Teacher)
 
     def get_students_list(self):
-        return self.students_list
+        return list(str(self.students_list).split(" "))
 
     def get_list_parents(self):
         list_parents = []
@@ -119,7 +119,7 @@ class Subject(db.Model, Model):
     teacher = db.relationship(Teacher)
 
     def get_students_list(self):
-        return self.students_list
+        return list(str(self.students_list).split(" "))
 
 
 class Parent(db.Model, Model):
@@ -161,10 +161,10 @@ class School:
         self.pupils = pupils
 
     def get_list_teachers(self):
-        return self.teachers
+        return list(str(self.teachers).split(" "))
 
     def get_list_classes(self):
-        return self.classes
+        return list(str(self.classes).split(" "))
 
     def get_list_pupils(self):
-        return self.pupils
+        return list(str(self.pupils).split(" "))
