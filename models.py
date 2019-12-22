@@ -96,7 +96,7 @@ class SchoolClass(db.Model, Model):
         list_parents = []
 
         for student in self.students_list:
-            list_parents = db.session.query(Parent).filter(Parent.child == student.id).first()
+            list_parents.append(db.session.query(Parent).filter(Parent.child == student.id).first())
 
         return list_parents
 
