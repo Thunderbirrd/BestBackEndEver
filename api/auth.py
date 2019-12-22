@@ -12,6 +12,19 @@ def logout():
 
 @app.route("/auth/login", methods=["GET"])
 def login():
+    if request.form:
+        login = request.form.get("login")
+        password = request.form.get("password")
+        type = request.form.get("type")
+
+        if type == "Teacher":
+            teacher = Teacher.auth(login, password)
+
+
+
+
+
+
     return "somebody"
 
 
