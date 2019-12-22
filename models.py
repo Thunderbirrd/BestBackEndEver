@@ -23,6 +23,30 @@ class Model:
             return False
 
 
+class Pupil(db.Model, Model):
+    id = db.Column(db.Integer, primary_key=True, unique=True, autoincrement=True)
+    name = db.Column(db.String)
+    surname = db.Column(db.String)
+    permit = db.Column(db.Integer, unique=True)
+    login = db.Column(db.String, unique=True)
+    password = db.Column(db.String)
+    position = ""
+    marks = db.Column(db.JSON)
+
+    def __init__(self, name, surname):
+        self.name = name
+        self.surname = surname
+        self.login = ""
+        self.password = ""
+        self.position = "Pupil"
+        self.permit = int(str(self.id) + str(random.randint(1, 1000)))
+        self.marks = ""
+
+    @staticmethod
+    def auth(login, password):
+        return db.session.query(Pupil).filter(Pupil.login == login).filter(Pupil.password == password).first()
+
+
 class Teacher(db.Model, Model):
     id = db.Column(db.Integer, primary_key=True, unique=True, autoincrement=True)
     permit = db.Column(db.Integer, unique=True)
@@ -55,7 +79,7 @@ class Teacher(db.Model, Model):
 
 class SchoolClass(db.Model, Model):
     name = db.Column(db.String, primary_key=True, unique=True)
-    students_list = db.Column(db.ARRAY)
+    students_list = db.Column(db.ARRAY, key=Pupil.id)
     teacher = db.Column(db.Integer, key=Teacher.id)
 
     def __init__(self, name, students_list, teacher):
@@ -83,32 +107,6 @@ class Subject(db.Model, Model):
 
     def get_students_list(self):
         return self.students_list
-
-
-class Pupil(db.Model, Model):
-    id = db.Column(db.Integer, primary_key=True, unique=True, autoincrement=True)
-    name = db.Column(db.String)
-    surname = db.Column(db.String)
-    permit = db.Column(db.Integer, unique=True)
-    login = db.Column(db.String, unique=True)
-    password = db.Column(db.String)
-    position = ""
-    school_class = db.Column(db.String, key=SchoolClass.name)
-    marks = db.Column(db.JSON)
-
-    def __init__(self, name, surname, clas):
-        self.name = name
-        self.surname = surname
-        self.login = ""
-        self.password = ""
-        self.school_class = clas
-        self.position = "Pupil"
-        self.permit = int(str(self.id) + str(random.randint(1, 1000)))
-        self.marks = ""
-
-    @staticmethod
-    def auth(login, password):
-        return db.session.query(Pupil).filter(Pupil.login == login).filter(Pupil.password == password).first()
 
 
 class Parent(db.Model, Model):
