@@ -1,7 +1,7 @@
 from db import db
 from flask import session
 from datetime import datetime
-from sqlalchemy import func, asc
+from sqlalchemy import func, asc, select
 import json
 import random
 
@@ -91,6 +91,14 @@ class SchoolClass(db.Model, Model):
 
     def get_students_list(self):
         return self.students_list
+
+    def get_list_parents(self):
+        list_parents = []
+
+        for student in self.students_list:
+            list_parents = db.session.query(Parent).filter(Parent.child == student.id).first()
+
+        return list_parents
 
 
 class Subject(db.Model, Model):
