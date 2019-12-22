@@ -88,7 +88,6 @@ class Pupil(db.Model, Model):
 
 class Parent(db.Model, Model):
     id = db.Column(db.Integer, primary_key=True, unique=True, autoincrement=True)
-    permit = db.Column(db.Integer, unique=True)
     name = db.Column(db.String)
     surname = db.Column(db.String)
     child = db.Column(db.Integer, key=Pupil.id)
