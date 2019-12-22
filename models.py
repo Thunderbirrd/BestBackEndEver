@@ -136,7 +136,7 @@ class Parent(db.Model, Model):
         self.password = password
         self.child = child_id
 
-        child = db.relationship(Pupil)
+    child = db.relationship(Pupil)
 
     @staticmethod
     def auth(login, password):
