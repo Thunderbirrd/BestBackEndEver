@@ -100,7 +100,7 @@ def register():
         if position == "Teacher":
             teacher = Teacher.auth(login, password)
 
-            if not teacher:
+            if teacher:
                 return json.dumps({'resultCode': '1'})
 
             email = request.form.get("email")
@@ -132,11 +132,11 @@ def register():
         elif position == "Pupil":
             pupil = Pupil.auth(login, password)
 
-            if not pupil:
+            if pupil:
                 return json.dumps({'resultCode': '1'})
 
             clas = request.form.get('clas')
-            pupil = Pupil(name, surname, login, password)
+            pupil = Pupil(name, surname, login, password, clas)
             pupil.save()
 
             session["auth"] = pupil.id
@@ -159,7 +159,7 @@ def register():
         elif position == "Parent":
             parent = Parent.auth(login, password)
 
-            if not parent:
+            if parent:
                 return json.dumps({'resultCode': '1'})
 
             child_id = request.form.get("child_id")
