@@ -58,9 +58,23 @@ class SchoolClass(db.Model, Model):
     students_list = db.Column(db.ARRAY)
     teacher = db.Column(db.Integer, key=Teacher.id)
 
-    def __init__(self, name, students_list):
+    def __init__(self, name, students_list, teacher):
         self.name = name
         self.students_list = list(students_list)
+        self.teacher = teacher
+
+
+class Subject(db.Model, Model):
+    academic_subject = db.Column(db.String, primary_key=True, unique=True)
+    students_list = db.Column(db.ARRAY)
+    teacher = db.Column(Teacher, key=Teacher.id)
+    homework = db.Column(db.String)
+
+    def __init__(self, name, students_list, teacher):
+        self.name = name
+        self.students_list = list(students_list)
+        self.homework = ""
+        self.teacher = teacher
 
 
 class Pupil(db.Model, Model):
