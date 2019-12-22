@@ -80,7 +80,7 @@ class Teacher(db.Model, Model):
 
 class SchoolClass(db.Model, Model):
     name = db.Column(db.String, primary_key=True, unique=True)
-    students_list = db.Column(db.ARRAY(int), db.ForeignKey(Pupil.id))
+    students_list = db.Column(db.ARRAY(db.Integer), db.ForeignKey(Pupil.id))
     teacher_id = db.Column(db.Integer, db.ForeignKey(Teacher.id))
 
     def __init__(self, name, students_list, teacher_id):
@@ -105,7 +105,7 @@ class SchoolClass(db.Model, Model):
 class Subject(db.Model, Model):
     id = db.Column(db.Integer, primary_key=True, unique=True)
     type = db.Column(db.String)  #subject || section || elective
-    students_list = db.Column(db.ARRAY(int), db.ForeignKey(Pupil.id))
+    students_list = db.Column(db.ARRAY(db.Integer), db.ForeignKey(Pupil.id))
     teacher_id = db.Column(db.Integer, db.ForeignKey(Teacher.id))
     homework = db.Column(db.String)
 
