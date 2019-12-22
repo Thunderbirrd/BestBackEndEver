@@ -23,6 +23,14 @@ class Model:
             return False
 
 
+class SchoolClass(db.Model, Model):
+    name = db.Column(db.String, primary_key=True, unique=True)
+    students_list = db.Column(db.ARRAY)
+
+    def __init__(self, name, students_list):
+        self.name = name
+        self.students_list = list(students_list)
+
 class Pupil(db.Model, Model):
     id = db.Column(db.Integer, primary_key=True, unique=True, autoincrement=True)
     name = db.Column(db.String)
@@ -30,7 +38,7 @@ class Pupil(db.Model, Model):
     permit = db.Column(db.Integer, unique=True)
     login = db.Column(db.String, unique=True)
     password = db.Column(db.String)
-    school_class = db.Column(db.String)
+    school_class = db.Column(db.String, key=SchoolClass.name)
 
     def __init__(self, name, surname, clas):
         self.name = name
@@ -96,3 +104,5 @@ class Teacher(db.Model, Model):
     @staticmethod
     def auth(login, password):
         return db.session.query(Pupil).filter(Pupil.login == login).filter(Pupil.password == password).first()
+
+
