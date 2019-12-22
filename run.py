@@ -101,7 +101,7 @@ def register():
             teacher = Teacher.auth(login, password)
 
             if teacher:
-                return json.dumps({'resultCode': '1'})
+                return json.dumps({'resultCode': 1})
 
             email = request.form.get("email")
             phone = request.form.get("phone")
@@ -114,7 +114,7 @@ def register():
 
             return json.dumps(
                 {
-                    'resultCode': 1,
+                    'resultCode': 0,
                     'data': {
                         'userId': teacher.id,
                         'login': login,
@@ -132,8 +132,10 @@ def register():
         elif position == "Pupil":
             pupil = Pupil.auth(login, password)
 
+            print(pupil)
+
             if pupil:
-                return json.dumps({'resultCode': '1'})
+                return json.dumps({'resultCode': 1})
 
             clas = request.form.get('clas')
             pupil = Pupil(name, surname, login, password, clas)
@@ -143,7 +145,7 @@ def register():
 
             return json.dumps(
                 {
-                    'resultCode': 1,
+                    'resultCode': 0,
                     'data': {
                         'userId': pupil.id,
                         'login': login,
@@ -160,7 +162,7 @@ def register():
             parent = Parent.auth(login, password)
 
             if parent:
-                return json.dumps({'resultCode': '1'})
+                return json.dumps({'resultCode': 1})
 
             child_id = request.form.get("child_id")
             parent = Parent(name, surname, child_id, login, password)
@@ -170,7 +172,7 @@ def register():
 
             return json.dumps(
                 {
-                    'resultCode': 1,
+                    'resultCode': 0,
                     'data': {
                         'userId': parent.id,
                         'login': login,

@@ -40,7 +40,10 @@ class Pupil(db.Model, Model):
         self.login = login
         self.password = password
         self.position = "Pupil"
-        self.permit = map(int, (str(self.id) + str(random.randint(1, 1000))).split())
+
+        if self.id is None: self.id = 1
+
+        self.permit = int(str(self.id) + str(random.randint(1, 1000)))
         self.marks = ""
         self.clas = clas
 
