@@ -79,7 +79,7 @@ class Teacher(db.Model, Model):
 
 class SchoolClass(db.Model, Model):
     name = db.Column(db.String, primary_key=True, unique=True)
-    students_list = db.Column(db.ARRAY, key=Pupil.id)
+    students_list = db.Column(db.ARRAY, db.ForeignKey(Pupil.id))
     teacher_id = db.Column(Teacher, db.ForeignKey(Teacher.id))
 
     def __init__(self, name, students_list, teacher_id):
