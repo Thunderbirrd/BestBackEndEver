@@ -6,6 +6,7 @@ from models import Parent, Pupil, Teacher
 
 db.create_all()
 
+
 def auth():
     return session.get('auth') is not None
 
