@@ -40,6 +40,9 @@ class Pupil(db.Model, Model):
         self.login = login
         self.password = password
         self.position = "Pupil"
+
+        if self.id is None: self.id = 1
+
         self.permit = int(str(self.id) + str(random.randint(1, 1000)))
         self.marks = ""
         self.clas = clas
@@ -109,8 +112,8 @@ class Subject(db.Model, Model):
     teacher_id = db.Column(db.Integer, db.ForeignKey(Teacher.id))
     homework = db.Column(db.String)
 
-    def __init__(self, type,  name, students_list, teacher_id):
-        self.type = type
+    def __init__(self, group, name, students_list, teacher_id):
+        self.type = group
         self.name = name
         self.students_list = list(students_list)
         self.homework = ""
