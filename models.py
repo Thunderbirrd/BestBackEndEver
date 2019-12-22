@@ -65,12 +65,14 @@ class SchoolClass(db.Model, Model):
 
 
 class Subject(db.Model, Model):
-    academic_subject = db.Column(db.String, primary_key=True, unique=True)
+    id = db.Column(db.Integer, primary_key=True, unique=True)
+    type = db.Column(db.String)  #subject || section || elective
     students_list = db.Column(db.ARRAY)
     teacher = db.Column(Teacher, key=Teacher.id)
     homework = db.Column(db.String)
 
-    def __init__(self, name, students_list, teacher):
+    def __init__(self, type,  name, students_list, teacher):
+        self.type = type
         self.name = name
         self.students_list = list(students_list)
         self.homework = ""
