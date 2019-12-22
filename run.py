@@ -68,7 +68,6 @@ def teacher_login():
 
 @app.route("/auth/parent_login", methods=["GET"])
 def parent_login():
-
     if request.form:
         login = request.form.get("login")
         password = request.form.get("password")
@@ -131,12 +130,12 @@ def register():
             )
 
         elif position == "Pupil":
-            pupil = Pupil(login, password)
+            pupil = Pupil.auth(login, password)
 
             if not pupil:
                 return json.dumps({'resultCode': '1'})
 
-            clas = request.form.get("clas")
+            clas = request.form.get('clas')
             pupil = Pupil(name, surname, login, password)
             pupil.save()
 
@@ -158,7 +157,7 @@ def register():
             )
 
         elif position == "Parent":
-            parent = Parent(login, password)
+            parent = Parent.auth(login, password)
 
             if not parent:
                 return json.dumps({'resultCode': '1'})
