@@ -5,8 +5,13 @@ import json
 from models import Parent, Pupil, Teacher
 
 
+def auth():
+    return session.get('auth') is not None
+
+
 @app.route("/auth/logout", methods=["POST"])
 def logout():
+    session['auth'] = None
     return "somebody"
 
 
