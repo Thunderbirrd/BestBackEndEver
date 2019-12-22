@@ -80,12 +80,14 @@ class Teacher(db.Model, Model):
 class SchoolClass(db.Model, Model):
     name = db.Column(db.String, primary_key=True, unique=True)
     students_list = db.Column(db.ARRAY, key=Pupil.id)
-    teacher = db.Column(db.Integer, key=Teacher.id)
+    teacher_id = db.Column(Teacher, db.ForeignKey(Teacher.id))
 
-    def __init__(self, name, students_list, teacher):
+    def __init__(self, name, students_list, teacher_id):
         self.name = name
         self.students_list = list(students_list)
-        self.teacher = teacher
+        self.teacher_id = teacher_id
+
+    teacher = db.relationship(Teacher)
 
     def get_students_list(self):
         return self.students_list
@@ -95,15 +97,17 @@ class Subject(db.Model, Model):
     id = db.Column(db.Integer, primary_key=True, unique=True)
     type = db.Column(db.String)  #subject || section || elective
     students_list = db.Column(db.ARRAY)
-    teacher = db.Column(Teacher, key=Teacher.id)
+    teacher_id = db.Column(Teacher, db.ForeignKey(Teacher.id))
     homework = db.Column(db.String)
 
-    def __init__(self, type,  name, students_list, teacher):
+    def __init__(self, type,  name, students_list, teacher_id):
         self.type = type
         self.name = name
         self.students_list = list(students_list)
         self.homework = ""
-        self.teacher = teacher
+        self.teacher_id = teacher_id
+
+    teacher = db.relationship(Teacher)
 
     def get_students_list(self):
         return self.students_list
@@ -113,7 +117,7 @@ class Parent(db.Model, Model):
     id = db.Column(db.Integer, primary_key=True, unique=True, autoincrement=True)
     name = db.Column(db.String)
     surname = db.Column(db.String)
-    child = db.Column(db.Integer, key=Pupil.id)
+    child__id = db.Column(db.Integer, db.ForeignKey(Pupil.id))
     login = db.Column(db.String, unique=True)
     password = db.Column(db.String)
     position = db.Column(db.String)
@@ -125,6 +129,8 @@ class Parent(db.Model, Model):
         self.password = ""
         self.child = child_id
 
+        child = db.relationship(Pupil)
+
     @staticmethod
     def auth(login, password):
         return db.session.query(Pupil).filter(Pupil.login == login).filter(Pupil.password == password).first()
@@ -134,9 +140,9 @@ class School:
     id = db.Column(db.Integer, primary_key=True, unique=True, autoincrement=True)
     name = db.Column(db.String, unique=True)
     address = db.Column(db.String)
-    classes = db.Column(db.ARRAY, key=SchoolClass.name)
-    pupils = db.Column(db.ARRAY, key=Pupil.id)
-    teachers = db.Column(db.ARRAY, key=Teacher.id)
+    classes = db.Column(db.ARRAY, db.ForeignKey(SchoolClass.name))
+    pupils = db.Column(db.ARRAY, db.ForeignKey(Pupil.id))
+    teachers = db.Column(db.ARRAY, db.ForeignKey(Teacher.id))
 
     def __init__(self, name, address, classes, teachers, pupils):
         self.name = name
