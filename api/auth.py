@@ -31,6 +31,48 @@ def pupil_login():
         else:
             return "Неправильный логин или пароль"
 
+<<<<<<< HEAD
+=======
+
+@app.route("/auth/teacher_login", methods=["GET"])
+def teacher_login():
+
+    if request.form:
+        login = request.form.get("login")
+        password = request.form.get("password")
+        teacher = Teacher.auth(login, password)
+
+        if teacher:
+            session["auth"] = teacher.id
+            return {
+                "id": teacher.id,
+                "name": teacher.name,
+                "surname": teacher.surname
+            }
+        else:
+            return "Неправильный логин или пароль"
+
+
+@app.route("/auth/parent_login", methods=["GET"])
+def parent_login():
+
+    if request.form:
+        login = request.form.get("login")
+        password = request.form.get("password")
+        parent = Parent.auth(login, password)
+
+        if parent:
+            session["auth"] = parent.id
+            return {
+                "id": parent.id,
+                "name": parent.name,
+                "surname": parent.surname
+            }
+        else:
+            return "Неправильный логин или пароль"
+
+
+>>>>>>> develop
 @app.route("/auth/register", methods=["POST"])
 def register():
     if request.form:
