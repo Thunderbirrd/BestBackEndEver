@@ -36,3 +36,11 @@ class Parent(db.Model, Model):
     password = db.Column(db.String)
     
 
+
+class Teacher(db.Model, Model):
+    id = db.Column(db.Integer, primary_key=True, unique=True, autoincrement=True)
+    position = db.Column(db.String)
+    qualification = db.Column(db.String)
+    phone = db.Column(db.Integer)
+    email = db.Column(db.Integer)
+    password = db.Column(db.String)
