@@ -1,5 +1,6 @@
 from app import app
 from flask import request, session
+from db import db
 import json
 
 from models import Parent, Pupil, Teacher
@@ -15,6 +16,9 @@ def logout():
     return "somebody"
 
 
+
+
+
 @app.route("/auth/pupil_login", methods=["GET"])
 def pupil_login():
 
@@ -28,7 +32,12 @@ def pupil_login():
             return {
                 "id": pupil.id,
                 "name": pupil.name,
-                "surname": pupil.surname
+                "surname": pupil.surname,
+                "clas": pupil.clas,
+                "permit": pupil.permit,
+                "login": pupil.login,
+                "password": pupil.password,
+                "position": pupil.position
             }
         else:
             return "Неправильный логин или пароль"
@@ -47,7 +56,15 @@ def teacher_login():
             return {
                 "id": teacher.id,
                 "name": teacher.name,
-                "surname": teacher.surname
+                "surname": teacher.surname,
+                "permit": teacher.permit,
+                "login": teacher.login,
+                "password": teacher.password,
+                "position": teacher.position,
+                "qualification": teacher.qualification,
+                "email": teacher.email,
+                "phone": teacher.phone,
+                "is_admin": teacher.is_admin
             }
         else:
             return "Неправильный логин или пароль"
@@ -66,7 +83,11 @@ def parent_login():
             return {
                 "id": parent.id,
                 "name": parent.name,
-                "surname": parent.surname
+                "surname": parent.surname,
+                "login": parent.login,
+                "password": parent.password,
+                "position": parent.position,
+                "child_id": parent.child__id
             }
         else:
             return "Неправильный логин или пароль"
@@ -79,23 +100,90 @@ def register():
         password = request.form.get("password")
         name = request.form.get("name")
         surname = request.form.get("surname")
-        type = request.form.get("type")
+        position = request.form.get("type")
 
-        if type == "Teacher":
+        if position == "Teacher":
+            teacher = Teacher.auth(login, password)
+
+            if not teacher:
+                return json.dumps({'resultCode': '1'})
+
             email = request.form.get("email")
             phone = request.form.get("phone")
             qualification = request.form.get("qualification")
+
             teacher = Teacher(name, surname, qualification, phone, email, False)
             teacher.save()
 
-        elif type == "Pupil":
+            session["auth"] = teacher.id
+
+            return json.dumps(
+                {
+                    'resultCode': 1,
+                    'data': {
+                        'userId': teacher.id,
+                        'login': login,
+                        'password': password,
+                        'position': position,
+                        'name': name,
+                        'surname': surname,
+                        'email ': email,
+                        'phone ': phone,
+                        'qualification ': qualification
+                    }
+                }
+            )
+
+        elif position == "Pupil":
+            pupil = Pupil(login, password)
+
+            if not pupil:
+                return json.dumps({'resultCode': '1'})
+
             clas = request.form.get("clas")
             pupil = Pupil(name, surname, login, password)
             pupil.save()
 
-        elif type == "Parent":
+            session["auth"] = pupil.id
+
+            return json.dumps(
+                {
+                    'resultCode': 1,
+                    'data': {
+                        'userId': pupil.id,
+                        'login': login,
+                        'password': password,
+                        'position': position,
+                        'name': name,
+                        'surname': surname,
+                        'clas': clas
+                    }
+                }
+            )
+
+        elif position == "Parent":
+            parent = Parent(login, password)
+
+            if not parent:
+                return json.dumps({'resultCode': '1'})
+
             child_id = request.form.get("child_id")
             parent = Parent(name, surname, child_id, login, password)
             parent.save()
 
-    return "somebody"
+            session["auth"] = parent.id
+
+            return json.dumps(
+                {
+                    'resultCode': 1,
+                    'data': {
+                        'userId': parent.id,
+                        'login': login,
+                        'password': password,
+                        'position': position,
+                        'name': name,
+                        'surname': surname,
+                        'child_id': child_id
+                    }
+                }
+            )
