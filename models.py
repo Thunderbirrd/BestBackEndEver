@@ -88,6 +88,7 @@ class Pupil(db.Model, Model):
     password = db.Column(db.String)
     position = ""
     school_class = db.Column(db.String, key=SchoolClass.name)
+    marks = db.Column(db.JSON)
 
     def __init__(self, name, surname, clas):
         self.name = name
@@ -97,6 +98,7 @@ class Pupil(db.Model, Model):
         self.school_class = clas
         self.position = "Pupil"
         self.permit = int(str(self.id) + str(random.randint(1, 1000)))
+        self.marks = ""
 
     @staticmethod
     def auth(login, password):
@@ -131,9 +133,10 @@ class School:
     classes = db.Column(db.ARRAY, key=SchoolClass.name)
     pupils = db.Column(db.ARRAY, key=Pupil.id)
     teachers = db.Column(db.ARRAY, key=Teacher.id)
-    Subject = db.Column(db.ARRAY, key=Subject.id)
 
-    def __init__(self, name, address):
+    def __init__(self, name, address, classes, teachers, pupils):
         self.name = name
         self.address = address
-
+        self.classes = classes
+        self.teachers = teachers
+        self.pupils = pupils
