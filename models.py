@@ -1,7 +1,7 @@
 from db import db
 from flask import session
 from datetime import datetime
-from sqlalchemy import func, asc
+from sqlalchemy import func, asc, select
 import json
 import random
 
@@ -79,7 +79,7 @@ class Teacher(db.Model, Model):
 
 class SchoolClass(db.Model, Model):
     name = db.Column(db.String, primary_key=True, unique=True)
-    students_list = db.Column(db.ARRAY, key=Pupil.id)
+    students_list = db.Column(db.ARRAY, db.ForeignKey(Pupil.id))
     teacher_id = db.Column(Teacher, db.ForeignKey(Teacher.id))
 
     def __init__(self, name, students_list, teacher_id):
@@ -91,6 +91,14 @@ class SchoolClass(db.Model, Model):
 
     def get_students_list(self):
         return self.students_list
+
+    def get_list_parents(self):
+        list_parents = []
+
+        for student in self.students_list:
+            list_parents.append(db.session.query(Parent).filter(Parent.child == student.id).first())
+
+        return list_parents
 
 
 class Subject(db.Model, Model):
