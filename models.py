@@ -74,7 +74,7 @@ class Teacher(db.Model, Model):
 
     @staticmethod
     def auth(login, password):
-        return db.session.query(Pupil).filter(Pupil.login == login).filter(Pupil.password == password).first()
+        return db.session.query(Teacher).filter(Teacher.login == login).filter(Teacher.password == password).first()
 
 
 class SchoolClass(db.Model, Model):
@@ -141,7 +141,7 @@ class Parent(db.Model, Model):
 
     @staticmethod
     def auth(login, password):
-        return db.session.query(Pupil).filter(Pupil.login == login).filter(Pupil.password == password).first()
+        return db.session.query(Parent).filter(Parent.login == login).filter(Parent.password == password).first()
 
 
 class School:
