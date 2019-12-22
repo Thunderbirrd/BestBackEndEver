@@ -81,7 +81,11 @@ class Teacher(db.Model, Model):
 class SchoolClass(db.Model, Model):
     name = db.Column(db.String, primary_key=True, unique=True)
     students_list = db.Column(db.ARRAY(db.Integer), db.ForeignKey(Pupil.id))
+<<<<<<< HEAD
     teacher_id = db.Column(Teacher, db.ForeignKey(Teacher.id))
+=======
+    teacher_id = db.Column(db.Integer, db.ForeignKey(Teacher.id))
+>>>>>>> develop
 
     def __init__(self, name, students_list, teacher_id):
         self.name = name
@@ -105,8 +109,13 @@ class SchoolClass(db.Model, Model):
 class Subject(db.Model, Model):
     id = db.Column(db.Integer, primary_key=True, unique=True)
     type = db.Column(db.String)  #subject || section || elective
+<<<<<<< HEAD
     students_list = db.Column(db.ARRAY(db.Integer), db.ForeignKey(Pupil.id))
     teacher_id = db.Column(Teacher, db.ForeignKey(Teacher.id))
+=======
+    students_list = db.Column(db.ARRAY(db.Integer))
+    teacher_id = db.Column(db.Integer, db.ForeignKey(Teacher.id))
+>>>>>>> develop
     homework = db.Column(db.String)
 
     def __init__(self, type,  name, students_list, teacher_id):
