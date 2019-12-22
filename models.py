@@ -23,13 +23,14 @@ class Model:
 
 
 class Pupil(db.Model, Model):
-    id = db.Column(db.Integer, primary_key=True, unique=True)
+    id = db.Column(db.Integer, primary_key=True, unique=True, autoincrement=True)
     name = db.Column(db.String)
     surname = db.Column(db.String)
     permit = db.Column(db.Integer, unique=True)
 
 
 class Parent(db.Model, Model):
-    id = db.Column(db.Integer, primary_key=True, unique=True)
-    children = db.Column(db.ARRAY)
+    id = db.Column(db.Integer, primary_key=True, unique=True, autoincrement=True)
+    child = db.Column(db.Integer, key=Pupil.id)
+    
 
