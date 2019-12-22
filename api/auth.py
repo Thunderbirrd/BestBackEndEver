@@ -82,7 +82,11 @@ def parent_login():
             return {
                 "id": parent.id,
                 "name": parent.name,
-                "surname": parent.surname
+                "surname": parent.surname,
+                "login": parent.login,
+                "password": parent.password,
+                "position": parent.position,
+                "child_id": parent.child__id
             }
         else:
             return "Неправильный логин или пароль"
