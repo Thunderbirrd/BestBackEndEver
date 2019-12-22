@@ -124,3 +124,16 @@ class Parent(db.Model, Model):
         return db.session.query(Pupil).filter(Pupil.login == login).filter(Pupil.password == password).first()
 
 
+class School:
+    id = db.Column(db.Integer, primary_key=True, unique=True, autoincrement=True)
+    name = db.Column(db.String, unique=True)
+    address = db.Column(db.String)
+    classes = db.Column(db.ARRAY, key=SchoolClass.name)
+    pupils = db.Column(db.ARRAY, key=Pupil.id)
+    teachers = db.Column(db.ARRAY, key=Teacher.id)
+    Subject = db.Column(db.ARRAY, key=Subject.id)
+
+    def __init__(self, name, address):
+        self.name = name
+        self.address = address
+
