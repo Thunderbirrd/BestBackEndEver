@@ -10,24 +10,9 @@ def logout():
     return "somebody"
 
 
-<<<<<<< HEAD
-@app.route("/auth/login", methods=["GET"])
-def login():
-    if request.form:
-        login = request.form.get("login")
-        password = request.form.get("password")
-        type = request.form.get("type")
-
-        if type == "Teacher":
-            teacher = Teacher.auth(login, password)
 
 
 
-
-
-
-    return "somebody"
-=======
 @app.route("/auth/pupil_login", methods=["GET"])
 def pupil_login():
 
@@ -45,8 +30,6 @@ def pupil_login():
             }
         else:
             return "Неправильный логин или пароль"
->>>>>>> develop
-
 
 @app.route("/auth/register", methods=["POST"])
 def register():
