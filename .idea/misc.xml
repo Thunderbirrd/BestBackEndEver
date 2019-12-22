@@ -5,6 +5,7 @@
   </component>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.7 (messenger) (1)" project-jdk-type="Python SDK" />
   <component name="PyCharmProfessionalAdvertiser">
     <option name="shown" value="true" />
@@ -14,5 +15,8 @@
 >>>>>>> develop
 =======
   <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.7 (messenger) (1)" project-jdk-type="Python SDK" />
+>>>>>>> develop
+=======
+  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.8 (Flask)" project-jdk-type="Python SDK" />
 >>>>>>> develop
 </project>
