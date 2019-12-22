@@ -26,7 +26,7 @@ class Model:
 class Teacher(db.Model, Model):
     id = db.Column(db.Integer, primary_key=True, unique=True, autoincrement=True)
     permit = db.Column(db.Integer, unique=True)
-    position = db.Column(db.String)
+    position = ""
     qualification = db.Column(db.String)
     name = db.Column(db.String)
     surname = db.Column(db.String)
@@ -70,6 +70,7 @@ class Pupil(db.Model, Model):
     permit = db.Column(db.Integer, unique=True)
     login = db.Column(db.String, unique=True)
     password = db.Column(db.String)
+    position = ""
     school_class = db.Column(db.String, key=SchoolClass.name)
 
     def __init__(self, name, surname, clas):
@@ -105,6 +106,5 @@ class Parent(db.Model, Model):
     @staticmethod
     def auth(login, password):
         return db.session.query(Pupil).filter(Pupil.login == login).filter(Pupil.password == password).first()
-
 
 
