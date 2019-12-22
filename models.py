@@ -37,6 +37,7 @@ class Pupil(db.Model, Model):
         self.login = ""
         self.password = ""
         self.school_class = clas
+        self.position = "Pupil"
 
     @staticmethod
     def auth(login, password):
@@ -45,11 +46,13 @@ class Pupil(db.Model, Model):
 
 class Parent(db.Model, Model):
     id = db.Column(db.Integer, primary_key=True, unique=True, autoincrement=True)
+    permit = db.Column(db.Integer, unique=True)
     name = db.Column(db.String)
     surname = db.Column(db.String)
     child = db.Column(db.Integer, key=Pupil.id)
     login = db.Column(db.String, unique=True)
     password = db.Column(db.String)
+    position = db.Column(db.String)
 
     def __init__(self, name, surname, child_id):
         self.name = name
@@ -65,6 +68,7 @@ class Parent(db.Model, Model):
 
 class Teacher(db.Model, Model):
     id = db.Column(db.Integer, primary_key=True, unique=True, autoincrement=True)
+    permit = db.Column(db.Integer, unique=True)
     position = db.Column(db.String)
     qualification = db.Column(db.String)
     name = db.Column(db.String)
@@ -75,11 +79,16 @@ class Teacher(db.Model, Model):
     password = db.Column(db.String)
     is_admin = db.Column(db.Boolean)
 
-    def __init__(self, name, surname):
+    def __init__(self, name, surname, qualification, phone, email, is_admin):
         self.name = name
         self.surname = surname
         self.login = ""
         self.password = ""
+        self.qualification = qualification
+        self.phone = phone
+        self.email = email
+        self.is_admin = is_admin
+        self.position = "Teacher"
 
     @staticmethod
     def auth(login, password):
