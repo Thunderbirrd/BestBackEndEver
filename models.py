@@ -60,7 +60,7 @@ class Teacher(db.Model, Model):
     password = db.Column(db.String)
     is_admin = db.Column(db.Boolean)
 
-    def __init__(self, name, surname, qualification, phone, email, is_admin):
+    def __init__(self, name, surname, qualification, phone, email):
         self.name = name
         self.surname = surname
         self.login = ""
@@ -68,7 +68,6 @@ class Teacher(db.Model, Model):
         self.qualification = qualification
         self.phone = phone
         self.email = email
-        self.is_admin = is_admin
         self.position = "Teacher"
         self.permit = int(str(self.id) + str(random.randint(1, 1000)))
 

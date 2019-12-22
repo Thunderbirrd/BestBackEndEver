@@ -1,5 +1,5 @@
 from app import app
-from flask import request
+from flask import request, session
 import json
 
 from models import Parent, Pupil, Teacher
@@ -10,6 +10,7 @@ def logout():
     return "somebody"
 
 
+<<<<<<< HEAD
 @app.route("/auth/login", methods=["GET"])
 def login():
     if request.form:
@@ -26,6 +27,25 @@ def login():
 
 
     return "somebody"
+=======
+@app.route("/auth/pupil_login", methods=["GET"])
+def pupil_login():
+
+    if request.form:
+        login = request.form.get("login")
+        password = request.form.get("password")
+        pupil = Pupil.auth(login, password)
+
+        if pupil:
+            session["auth"] = pupil.id
+            return {
+                "id": pupil.id,
+                "name": pupil.name,
+                "surname": pupil.surname
+            }
+        else:
+            return "Неправильный логин или пароль"
+>>>>>>> develop
 
 
 @app.route("/auth/register", methods=["POST"])
