@@ -51,11 +51,12 @@ class Parent(db.Model, Model):
     login = db.Column(db.String, unique=True)
     password = db.Column(db.String)
 
-    def __init__(self, name, surname):
+    def __init__(self, name, surname, child_id):
         self.name = name
         self.surname = surname
         self.login = ""
         self.password = ""
+        self.child = child_id
 
     @staticmethod
     def auth(login, password):
