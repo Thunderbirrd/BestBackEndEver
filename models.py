@@ -33,11 +33,11 @@ class Pupil(db.Model, Model):
     position = ""
     marks = db.Column(db.JSON)
 
-    def __init__(self, name, surname):
+    def __init__(self, name, surname, login, password):
         self.name = name
         self.surname = surname
-        self.login = ""
-        self.password = ""
+        self.login = login
+        self.password = password
         self.position = "Pupil"
         self.permit = int(str(self.id) + str(random.randint(1, 1000)))
         self.marks = ""
@@ -130,11 +130,11 @@ class Parent(db.Model, Model):
     password = db.Column(db.String)
     position = db.Column(db.String)
 
-    def __init__(self, name, surname, child_id):
+    def __init__(self, name, surname, child_id, login, password):
         self.name = name
         self.surname = surname
-        self.login = ""
-        self.password = ""
+        self.login = login
+        self.password = password
         self.child = child_id
 
         child = db.relationship(Pupil)
