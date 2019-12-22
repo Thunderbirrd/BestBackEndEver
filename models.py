@@ -27,10 +27,12 @@ class Pupil(db.Model, Model):
     name = db.Column(db.String)
     surname = db.Column(db.String)
     permit = db.Column(db.Integer, unique=True)
+    password = db.Column(db.String)
 
 
 class Parent(db.Model, Model):
     id = db.Column(db.Integer, primary_key=True, unique=True, autoincrement=True)
     child = db.Column(db.Integer, key=Pupil.id)
+    password = db.Column(db.String)
     
 
