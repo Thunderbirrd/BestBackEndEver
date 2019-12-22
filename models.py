@@ -122,5 +122,3 @@ class Parent(db.Model, Model):
     @staticmethod
     def auth(login, password):
         return db.session.query(Pupil).filter(Pupil.login == login).filter(Pupil.password == password).first()
-
-
