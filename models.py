@@ -32,8 +32,9 @@ class Pupil(db.Model, Model):
     password = db.Column(db.String)
     position = ""
     marks = db.Column(db.JSON)
+    clas = db.Column(db.String)
 
-    def __init__(self, name, surname, login, password):
+    def __init__(self, name, surname, login, password, clas):
         self.name = name
         self.surname = surname
         self.login = login
@@ -41,6 +42,7 @@ class Pupil(db.Model, Model):
         self.position = "Pupil"
         self.permit = int(str(self.id) + str(random.randint(1, 1000)))
         self.marks = ""
+        self.clas = clas
 
     @staticmethod
     def auth(login, password):
