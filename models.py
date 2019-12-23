@@ -15,8 +15,10 @@ class Model:
 
     def save(self):
         if self.validate():
+            print(self.id)
             if self.id is None:
                 db.session.add(self)
+                print(2)
             db.session.commit()
             return True
         else:
@@ -41,9 +43,9 @@ class Pupil(db.Model, Model):
         self.password = password
         self.position = "Pupil"
 
-        if self.id is None: self.id = 1
+        #if self.id is None: self.id = 1
 
-        self.permit = int(str(self.id) + str(random.randint(1, 1000)))
+        #self.permit = int(str(self.id) + str(random.randint(1, 1000)))
         self.marks = ""
         self.clas = clas
 
@@ -74,7 +76,7 @@ class Teacher(db.Model, Model):
         self.phone = phone
         self.email = email
         self.position = "Teacher"
-        self.permit = int(str(self.id) + str(random.randint(1, 1000)))
+        #self.permit = int(str(self.id) + str(random.randint(1, 1000)))
 
     @staticmethod
     def auth(login, password):
