@@ -22,6 +22,10 @@ def pupil_login():
     if request.form:
         login = request.form.get("login")
         password = request.form.get("password")
+
+        if len(login) < 8 or len(password) < 8:
+            return json.dumps({'resultCode': 1})
+
         pupil = Pupil.auth(login, password)
 
         if pupil:
