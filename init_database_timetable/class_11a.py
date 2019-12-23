@@ -19,7 +19,3 @@ if TimetableDay.get_by_id(54) is None:
 if TimetableDay.get_by_id(55) is None:
     monday = TimetableDay(9, 9, 13, 3, 5, 9, None, None)
     monday.save()
-
-if TimetableDay.get_by_id(56) is None:
-    monday = TimetableDay(8, 9, 5, 12, 3, 3, 7, None)
-    monday.save()
