@@ -42,7 +42,7 @@ class Pupil(db.Model, Model):
         self.login = login
         self.password = password
         self.position = "Pupil"
-        self.permit = int(self.login + str(random.randint(1, 10000000)))
+        self.permit = self.login + str(random.randint(1, 10000000))
         self.marks = ""
         self.clas = clas
 
@@ -73,7 +73,7 @@ class Teacher(db.Model, Model):
         self.phone = phone
         self.email = email
         self.position = "Teacher"
-        self.permit = int(self.login + str(random.randint(1, 10000000)))
+        self.permit = self.login + str(random.randint(1, 10000000))
         self.is_admin = is_admin
 
     @staticmethod
