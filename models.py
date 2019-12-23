@@ -244,6 +244,10 @@ class TimetableClass(db.Model, Model):
             'friday': self.get_friday_timetable()
         }
 
+    @staticmethod
+    def get_by_id(id_timetable_class):
+        return db.session.query(TimetableClass).filter(TimetableClass.id == id_timetable_class).first()
+
 
 class SchoolClass(db.Model, Model):
     name = db.Column(db.String, primary_key=True, unique=True)
