@@ -86,7 +86,7 @@ class Subject(db.Model, Model):
     students_list = db.Column(db.String, db.ForeignKey(Pupil.id))
     teacher_id = db.Column(db.Integer, db.ForeignKey(Teacher.id))
     homework = db.Column(db.String)
-    name = db.Column(db.String, unique=True)
+    name = db.Column(db.String)
     classroom = db.Column(db.String)
 
     def __init__(self, type, name, students_list, teacher_id, room):
