@@ -87,13 +87,15 @@ class Subject(db.Model, Model):
     teacher_id = db.Column(db.Integer, db.ForeignKey(Teacher.id))
     homework = db.Column(db.String)
     name = db.Column(db.String, unique=True)
+    classroom = db.Column(db.String)
 
-    def __init__(self, type, name, students_list, teacher_id):
+    def __init__(self, type, name, students_list, teacher_id, room):
         self.type = type
         self.name = name
         self.students_list = list(students_list)
         self.homework = ""
         self.teacher_id = teacher_id
+        self.classroom = str(room)
 
     teacher = db.relationship(Teacher)
 
