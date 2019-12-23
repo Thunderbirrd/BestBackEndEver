@@ -61,3 +61,4 @@ if Subject.get_by_name("Право") is None:
 
 if Subject.get_by_name("Экономика") is None:
     bio = Subject("subject", "Экономика", "", 20, "20")
+
