@@ -189,8 +189,3 @@ def register():
             return json.dumps({'resultCode': 1})
 
 
-@app.route('/')
-def hello_world():
-    return 'hello world!'
-
-
