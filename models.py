@@ -42,10 +42,7 @@ class Pupil(db.Model, Model):
         self.login = login
         self.password = password
         self.position = "Pupil"
-
-        #if self.id is None: self.id = 1
-
-        #self.permit = int(str(self.id) + str(random.randint(1, 1000)))
+        self.permit = int(self.login + str(random.randint(1, 10000000)))
         self.marks = ""
         self.clas = clas
 
@@ -76,7 +73,7 @@ class Teacher(db.Model, Model):
         self.phone = phone
         self.email = email
         self.position = "Teacher"
-        #self.permit = int(str(self.id) + str(random.randint(1, 1000)))
+        self.permit = int(self.login + str(random.randint(1, 10000000)))
 
     @staticmethod
     def auth(login, password):
