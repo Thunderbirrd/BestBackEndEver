@@ -6,7 +6,7 @@ import json
 from models import Pupil, SchoolClass
 
 
-@app.route("/timetable/timetableClass/<id_pupil>", methods=["GET"])
+@app.route("/timetable/timetableClass/<int:id_pupil>", methods=["GET"])
 def get_timetable_pupil(id_pupil):
     print(id_pupil)
     pupil = db.session.query(Pupil).filter(id_pupil == Pupil.id).first()
