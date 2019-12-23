@@ -105,6 +105,10 @@ class Subject(db.Model, Model):
     def set_homework(self, new_homework):
         self.homework = new_homework
 
+    @staticmethod
+    def get_by_name(name):
+        return db.session.query(Subject).filter(Subject.name == name).first()
+
 
 class Parent(db.Model, Model):
     id = db.Column(db.Integer, primary_key=True, unique=True, autoincrement=True)
