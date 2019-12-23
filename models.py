@@ -93,7 +93,7 @@ class Subject(db.Model, Model):
     def __init__(self, type, name, students_list, teacher_id, room):
         self.type = type
         self.name = name
-        self.students_list = list(students_list)
+        self.students_list = students_list
         self.homework = ""
         self.teacher_id = teacher_id
         self.classroom = str(room)

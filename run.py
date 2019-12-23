@@ -8,7 +8,10 @@ from models import Parent, Pupil, Teacher
 import api.auth
 import api.timetable
 
+
 db.create_all()
+
+import init_database
 
 
 if __name__ == '__main__':
