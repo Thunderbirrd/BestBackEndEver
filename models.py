@@ -29,7 +29,7 @@ class Pupil(db.Model, Model):
     id = db.Column(db.Integer, primary_key=True, unique=True, autoincrement=True)
     name = db.Column(db.String)
     surname = db.Column(db.String)
-    permit = db.Column(db.Integer, unique=True)
+    permit = db.Column(db.String, unique=True)
     login = db.Column(db.String, unique=True)
     password = db.Column(db.String)
     position = ""
@@ -53,7 +53,7 @@ class Pupil(db.Model, Model):
 
 class Teacher(db.Model, Model):
     id = db.Column(db.Integer, primary_key=True, unique=True, autoincrement=True)
-    permit = db.Column(db.Integer, unique=True)
+    permit = db.Column(db.String, unique=True)
     position = ""
     qualification = db.Column(db.String)
     name = db.Column(db.String)
