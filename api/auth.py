@@ -111,7 +111,7 @@ def register():
             phone = request.form.get("phone")
             qualification = request.form.get("qualification")
 
-            teacher = Teacher(name, surname, qualification, phone, email, False)
+            teacher = Teacher(login, password, name, surname, qualification, phone, email, False)
             teacher.save()
 
             session["auth"] = teacher.id

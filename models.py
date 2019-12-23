@@ -64,16 +64,17 @@ class Teacher(db.Model, Model):
     password = db.Column(db.String)
     is_admin = db.Column(db.Boolean)
 
-    def __init__(self, name, surname, qualification, phone, email):
+    def __init__(self, login, password, name, surname, qualification, phone, email, is_admin):
         self.name = name
         self.surname = surname
-        self.login = ""
-        self.password = ""
+        self.login = login
+        self.password = password
         self.qualification = qualification
         self.phone = phone
         self.email = email
         self.position = "Teacher"
         self.permit = int(self.login + str(random.randint(1, 10000000)))
+        self.is_admin = is_admin
 
     @staticmethod
     def auth(login, password):
