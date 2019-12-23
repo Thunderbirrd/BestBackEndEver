@@ -2,63 +2,40 @@
 <project version="4">
   <component name="dataSourceStorageLocal">
     <data-source name="database" uuid="c613b6aa-37cb-4fb9-8b3f-acfe567dda2e">
-      <database-info product="SQLite" version="3.20.1" jdbc-version="2.1" driver-name="SQLite JDBC" driver-version="3.20.1.1" dbms="SQLITE" exact-version="3.20.1" />
+      <database-info product="SQLite" version="3.20.1" jdbc-version="2.1" driver-name="SQLite JDBC" driver-version="3.20.1.1" />
       <case-sensitivity plain-identifiers="mixed" quoted-identifiers="mixed" />
       <secret-storage>master_key</secret-storage>
       <auth-required>false</auth-required>
-      <schema-mapping>
-        <introspection-scope>
-          <node kind="schema" negative="1" />
-        </introspection-scope>
-      </schema-mapping>
+      <introspection-schemas>*:*</introspection-schemas>
     </data-source>
     <data-source name="database [2]" uuid="d3d3b60b-7a6f-441f-92c7-befcc6eba787">
-      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="SQLITE" exact-version="0" />
-      <schema-mapping>
-        <introspection-scope>
-          <node kind="schema" negative="1" />
-        </introspection-scope>
-      </schema-mapping>
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
+      <introspection-schemas>*:*</introspection-schemas>
     </data-source>
     <data-source name="database [3]" uuid="78da2bd7-4d12-4183-ae51-b0b5c4f555b7">
-      <database-info product="SQLite" version="3.20.1" jdbc-version="2.1" driver-name="SQLite JDBC" driver-version="3.20.1.1" dbms="SQLITE" exact-version="3.20.1" />
+      <database-info product="SQLite" version="3.20.1" jdbc-version="2.1" driver-name="SQLite JDBC" driver-version="3.20.1.1" />
       <case-sensitivity plain-identifiers="mixed" quoted-identifiers="mixed" />
-      <schema-mapping>
-        <introspection-scope>
-          <node kind="schema" qname="main" />
-        </introspection-scope>
-      </schema-mapping>
+      <introspection-schemas>*:main</introspection-schemas>
     </data-source>
     <data-source name="database [4]" uuid="84183fb7-c84c-47dc-b18d-a2737b5d27db">
-      <database-info product="SQLite" version="3.20.1" jdbc-version="2.1" driver-name="SQLite JDBC" driver-version="3.20.1.1" dbms="SQLITE" exact-version="3.20.1" />
+      <database-info product="SQLite" version="3.20.1" jdbc-version="2.1" driver-name="SQLite JDBC" driver-version="3.20.1.1" />
       <case-sensitivity plain-identifiers="mixed" quoted-identifiers="mixed" />
-      <schema-mapping>
-        <introspection-scope>
-          <node kind="schema" qname="main" />
-        </introspection-scope>
-      </schema-mapping>
+      <introspection-schemas>*:main</introspection-schemas>
     </data-source>
     <data-source name="database [5]" uuid="04a19f84-1e8d-467b-86c0-c581e545d68d">
-      <database-info product="SQLite" version="3.20.1" jdbc-version="2.1" driver-name="SQLite JDBC" driver-version="3.20.1.1" dbms="SQLITE" exact-version="3.20.1" />
+      <database-info product="SQLite" version="3.20.1" jdbc-version="2.1" driver-name="SQLite JDBC" driver-version="3.20.1.1" />
       <case-sensitivity plain-identifiers="mixed" quoted-identifiers="mixed" />
-      <schema-mapping>
-        <introspection-scope>
-          <node kind="schema" qname="main" />
-        </introspection-scope>
-      </schema-mapping>
+      <introspection-schemas>*:main</introspection-schemas>
     </data-source>
     <data-source name="database [6]" uuid="c6fe2aaf-8192-4819-99d8-3e796fbf28f4">
-      <database-info product="SQLite" version="3.20.1" jdbc-version="2.1" driver-name="SQLite JDBC" driver-version="3.20.1.1" dbms="SQLITE" exact-version="3.20.1" />
+      <database-info product="SQLite" version="3.20.1" jdbc-version="2.1" driver-name="SQLite JDBC" driver-version="3.20.1.1" />
       <case-sensitivity plain-identifiers="mixed" quoted-identifiers="mixed" />
-      <schema-mapping>
-        <introspection-scope>
-          <node kind="schema" qname="main" />
-        </introspection-scope>
-      </schema-mapping>
+      <introspection-schemas>*:main</introspection-schemas>
     </data-source>
     <data-source name="database [7]" uuid="36d94901-a009-422d-a24c-c69184091019">
-      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="SQLITE" exact-version="0" />
-      <schema-mapping />
+      <database-info product="SQLite" version="3.20.1" jdbc-version="2.1" driver-name="SQLite JDBC" driver-version="3.20.1.1" />
+      <case-sensitivity plain-identifiers="mixed" quoted-identifiers="mixed" />
+      <introspection-schemas>*:main</introspection-schemas>
     </data-source>
   </component>
 </project>

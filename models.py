@@ -141,6 +141,16 @@ class TimetableDay(db.Model, Model):
     id_seventh_lesson = db.Column(db.Integer, db.ForeignKey(Subject.id))
     id_eighth_lesson = db.Column(db.Integer, db.ForeignKey(Subject.id))
 
+    def __init__(self, id1, id2, id3, id4, id5, id6, id7, id8):
+        self.id_first_lesson = id1
+        self.id_second_lesson = id2
+        self.id_third_lesson = id3
+        self.id_fourth_lesson = id4
+        self.id_fifth_lesson = id5
+        self.id_sixth_lesson = id6
+        self.id_seventh_lesson = id7
+        self.id_eighth_lesson = id8
+
     def get_first_lesson(self):
         return db.session.query(Subject).filter(Subject.id == self.id_first_lesson).first()
 
@@ -194,6 +204,13 @@ class TimetableClass(db.Model, Model):
     id_wednesday = db.Column(db.Integer, db.ForeignKey(TimetableDay.id))
     id_thursday = db.Column(db.Integer, db.ForeignKey(TimetableDay.id))
     id_friday = db.Column(db.Integer, db.ForeignKey(TimetableDay.id))
+
+    def __int__(self, id1, id2, id3, id4, id5):
+        self.id_monday = id1
+        self.id_tuesday = id2
+        self.id_wednesday = id3
+        self.id_thursday = id4
+        self.id_friday = id5
 
     def get_monday_timetable(self):
         return (db.session.query(TimetableDay).filter(TimetableDay.id == self.id_monday).first()).get_all_lesson()
