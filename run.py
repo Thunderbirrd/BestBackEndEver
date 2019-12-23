@@ -6,7 +6,7 @@ from models import Parent, Pupil, Teacher
 
 #сюда будем записывать импорты файлов нашего api
 import api.auth
-
+import api.timetable
 
 db.create_all()
 
