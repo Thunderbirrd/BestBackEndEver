@@ -89,9 +89,10 @@ class Subject(db.Model, Model):
     students_list = db.Column(db.String, db.ForeignKey(Pupil.id))
     teacher_id = db.Column(db.Integer, db.ForeignKey(Teacher.id))
     homework = db.Column(db.String)
+    name = db.Column(db.String, unique=True)
 
-    def __init__(self, group, name, students_list, teacher_id):
-        self.type = group
+    def __init__(self, type, name, students_list, teacher_id):
+        self.type = type
         self.name = name
         self.students_list = list(students_list)
         self.homework = ""
@@ -101,6 +102,9 @@ class Subject(db.Model, Model):
 
     def get_students_list(self):
         return list(str(self.students_list).split(" "))
+
+    def set_homework(self, new_homework):
+        self.homework = new_homework
 
 
 class Parent(db.Model, Model):
@@ -209,7 +213,7 @@ class TimetableClass(db.Model, Model):
     def get_all_day_timetable(self):
         return {
             'monday': self.get_monday_timetable(),
-            'tuesday':self.get_tuesday_timetable(),
+            'tuesday': self.get_tuesday_timetable(),
             'wednesday': self.get_wednesday_timetable(),
             'thursday': self.get_thursday_timetable(),
             'friday': self.get_friday_timetable()
