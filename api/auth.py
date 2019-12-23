@@ -42,7 +42,6 @@ def pupil_login():
 
 @app.route("/auth/teacher_login", methods=["GET"])
 def teacher_login():
-
     if request.form:
         login = request.form.get("login")
         password = request.form.get("password")
@@ -69,7 +68,6 @@ def teacher_login():
 
 @app.route("/auth/parent_login", methods=["GET"])
 def parent_login():
-
     if request.form:
         login = request.form.get("login")
         password = request.form.get("password")
@@ -102,8 +100,8 @@ def register():
         if position == "Teacher":
             teacher = Teacher.auth(login, password)
 
-            if not teacher:
-                return json.dumps({'resultCode': '1'})
+            if teacher:
+                return json.dumps({'resultCode': 1})
 
             email = request.form.get("email")
             phone = request.form.get("phone")
@@ -116,7 +114,7 @@ def register():
 
             return json.dumps(
                 {
-                    'resultCode': 1,
+                    'resultCode': 0,
                     'data': {
                         'userId': teacher.id,
                         'login': login,
@@ -132,20 +130,22 @@ def register():
             )
 
         elif position == "Pupil":
-            pupil = Pupil(login, password)
+            pupil = Pupil.auth(login, password)
 
-            if not pupil:
-                return json.dumps({'resultCode': '1'})
+            print(pupil)
 
-            clas = request.form.get("clas")
-            pupil = Pupil(name, surname, login, password)
+            if pupil:
+                return json.dumps({'resultCode': 1})
+
+            clas = request.form.get('clas')
+            pupil = Pupil(name, surname, login, password, clas)
             pupil.save()
 
             session["auth"] = pupil.id
 
             return json.dumps(
                 {
-                    'resultCode': 1,
+                    'resultCode': 0,
                     'data': {
                         'userId': pupil.id,
                         'login': login,
@@ -159,10 +159,10 @@ def register():
             )
 
         elif position == "Parent":
-            parent = Parent(login, password)
+            parent = Parent.auth(login, password)
 
-            if not parent:
-                return json.dumps({'resultCode': '1'})
+            if parent:
+                return json.dumps({'resultCode': 1})
 
             child_id = request.form.get("child_id")
             parent = Parent(name, surname, child_id, login, password)
@@ -172,7 +172,7 @@ def register():
 
             return json.dumps(
                 {
-                    'resultCode': 1,
+                    'resultCode': 0,
                     'data': {
                         'userId': parent.id,
                         'login': login,
@@ -185,7 +185,12 @@ def register():
                 }
             )
 
+        else:
+            return json.dumps({'resultCode': 1})
+
 
 @app.route('/')
 def hello_world():
     return 'hello world!'
+
+
