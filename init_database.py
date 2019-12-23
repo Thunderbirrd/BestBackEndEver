@@ -37,3 +37,27 @@ if Subject.get_by_name("Геометрия") is None:
 
 if Subject.get_by_name("Англ.яз.") is None:
     bio = Subject("subject", "Англ.яз.", "", 12, "12")
+
+if Subject.get_by_name("География") is None:
+    bio = Subject("subject", "География", "", 13, "13")
+
+if Subject.get_by_name("Обществознание") is None:
+    bio = Subject("subject", "Обществознание", "", 14, "14")
+
+if Subject.get_by_name("Окружающий мир") is None:
+    bio = Subject("subject", "Окружающий мир", "", 15, "15")
+
+if Subject.get_by_name("ИЗО") is None:
+    bio = Subject("subject", "ИЗО", "", 16, "16")
+
+if Subject.get_by_name("Музыка") is None:
+    bio = Subject("subject", "Музыка", "", 17, "17")
+
+if Subject.get_by_name("ОБЖ") is None:
+    bio = Subject("subject", "ОБЖ", "", 18, "18")
+
+if Subject.get_by_name("Право") is None:
+    bio = Subject("subject", "Право", "", 19, "19")
+
+if Subject.get_by_name("Экономика") is None:
+    bio = Subject("subject", "Экономика", "", 20, "20")
