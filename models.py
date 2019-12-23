@@ -201,8 +201,8 @@ class TimetableDay(db.Model, Model):
         }
 
     @staticmethod
-    def get_by_id(id_lesson):
-        return db.session.query(TimetableDay).filter(TimetableDay.id == id_lesson).first()
+    def get_by_id(id_day):
+        return db.session.query(TimetableDay).filter(TimetableDay.id == id_day).first()
 
 
 class TimetableClass(db.Model, Model):
