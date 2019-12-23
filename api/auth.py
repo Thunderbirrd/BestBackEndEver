@@ -185,6 +185,9 @@ def register():
                 }
             )
 
+        else:
+            return json.dumps({'resultCode': 1})
+
 
 @app.route('/')
 def hello_world():
