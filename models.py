@@ -200,6 +200,10 @@ class TimetableDay(db.Model, Model):
             eighth_lesson
         }
 
+    @staticmethod
+    def get_by_id(id_lesson):
+        return db.session.query(TimetableDay).filter(TimetableDay.id == id_lesson).first()
+
 
 class TimetableClass(db.Model, Model):
     id = db.Column(db.Integer, primary_key=True, unique=True, autoincrement=True)
