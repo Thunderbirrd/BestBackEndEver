@@ -93,14 +93,16 @@ class Subject(db.Model, Model):
     homework = db.Column(db.String)
     name = db.Column(db.String)
     classroom = db.Column(db.String)
+    school_class_name = db.Column(db.String)
 
-    def __init__(self, type_, name, students_list, teacher_id, room):
+    def __init__(self, type_, name, students_list, teacher_id, room, school_class_name):
         self.type = type_
         self.name = name
         self.students_list = students_list
         self.homework = ""
         self.teacher_id = teacher_id
         self.classroom = str(room)
+        self.school_class_name = school_class_name
 
     teacher = db.relationship(Teacher)
 
@@ -122,8 +124,12 @@ class Subject(db.Model, Model):
         self.save()
 
     @staticmethod
-    def get_by_name_and_teacher(name, teacher_id):
-        return db.session.query(Subject).filter(Subject.name == name).filter(Subject.teacher_id == teacher_id).first()
+    def get_subject(name, teacher_id, school_class_name):
+        return db.session.query(Subject)\
+            .filter(Subject.name == name)\
+            .filter(Subject.teacher_id == teacher_id)\
+            .filter(Subject.school_class_name == school_class_name)\
+            .first()
 
 
 class Parent(db.Model, Model):
