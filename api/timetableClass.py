@@ -10,7 +10,7 @@ from models import TimetableClass
 def get_all_day_timetable():
     timetable_class_id = request.form.get("timetableClass_id")
     subject = db.session.query(TimetableClass).filter(timetable_class_id == TimetableClass.id).first()
-    return subject.get_all_day_timetable()
+    return json.dumps(subject.get_all_day_timetable())
 
 
 @app.route("/timetable_class/set", methods=["PUT"])
@@ -36,7 +36,7 @@ def set_day():
             'resultCode': 0,
             'data': {
                 'timetable_class_id': timetable_class_id,
-                'changed day': number_day,
+                'changed day number': number_day,
                 'new_day_id': new_day_id
             }
         }
