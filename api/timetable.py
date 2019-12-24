@@ -11,7 +11,9 @@ def get_timetable_pupil(id_pupil):
     pupil = db.session.query(Pupil).filter(id_pupil == Pupil.id).first()
     clas = db.session.query(SchoolClass).filter(pupil.clas == SchoolClass.name).first()
 
-    return clas.get_timetable_class()
+    timetable = clas.get_timetable_class_list()
+
+    return json.dumps(timetable)
 
 
 @app.route("/timetable/set_homework", methods=["PUT"])

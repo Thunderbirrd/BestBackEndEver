@@ -106,8 +106,17 @@ class Subject(db.Model, Model):
 
     teacher = db.relationship(Teacher)
 
+    def get_id(self):
+        return self.id
+
+    def get_type(self):
+        return self.type
+
     def get_students_list(self):
         return list(str(self.students_list).split(" "))
+
+    def get_teacher_id(self):
+        return self.teacher_id
 
     def set_homework(self, new_homework):
         self.homework = new_homework
@@ -116,12 +125,18 @@ class Subject(db.Model, Model):
     def get_hw(self):
         return self.homework
 
+    def get_name(self):
+        return self.name
+
     def get_class(self):
         return self.classroom
 
     def set_class(self, cl):
         self.classroom = cl
         self.save()
+
+    def get_school_class_name(self):
+        return self.school_class_name
 
     @staticmethod
     def get_subject(name, teacher_id, school_class_name):
@@ -242,7 +257,7 @@ class TimetableDay(db.Model, Model):
         seventh_lesson = self.get_seventh_lesson()
         eighth_lesson = self.get_eighth_lesson()
 
-        return {
+        return [
             first_lesson,
             second_lesson,
             third_lesson,
@@ -251,7 +266,32 @@ class TimetableDay(db.Model, Model):
             sixth_lesson,
             seventh_lesson,
             eighth_lesson
-        }
+        ]
+
+    def get_list_lesson(self):
+        id_arr = self.get_all_lesson()
+
+        subject_arr = []
+
+        for subject in id_arr:
+            if subject is None: continue
+
+            dictionary = {
+                "id": subject.get_id(),
+                "type": subject.get_type(),
+                "students_list": subject.get_students_list(),
+                "teacher_id": subject.get_teacher_id(),
+                "homework": subject.get_hw(),
+                "name": subject.get_name(),
+                "classroom": subject.get_class(),
+                "school_class_name": subject.get_school_class_name()
+            }
+
+            subject_arr.append(dictionary)
+
+        print(subject_arr)
+
+        return subject_arr
 
     @staticmethod
     def get_by_id(id_day):
@@ -288,6 +328,21 @@ class TimetableClass(db.Model, Model):
     def get_friday_timetable(self):
         return db.session.query(TimetableDay).filter(TimetableDay.id == self.id_friday).first().get_all_lesson()
 
+    def get_monday_timetable_list(self):
+        return (db.session.query(TimetableDay).filter(TimetableDay.id == self.id_monday).first()).get_list_lesson()
+
+    def get_tuesday_timetable_list(self):
+        return db.session.query(TimetableDay).filter(TimetableDay.id == self.id_tuesday).first().get_list_lesson()
+
+    def get_wednesday_timetable_list(self):
+        return db.session.query(TimetableDay).filter(TimetableDay.id == self.id_wednesday).first().get_list_lesson()
+
+    def get_thursday_timetable_list(self):
+        return db.session.query(TimetableDay).filter(TimetableDay.id == self.id_thursday).first().get_list_lesson()
+
+    def get_friday_timetable_list(self):
+        return db.session.query(TimetableDay).filter(TimetableDay.id == self.id_friday).first().get_list_lesson()
+
     def set_monday(self, new):
         self.id_monday = new
         self.save()
@@ -315,6 +370,15 @@ class TimetableClass(db.Model, Model):
             'wednesday': self.get_wednesday_timetable(),
             'thursday': self.get_thursday_timetable(),
             'friday': self.get_friday_timetable()
+        }
+
+    def get_week_dictionary_timetable(self):
+        return {
+            'monday': self.get_monday_timetable_list(),
+            'tuesday': self.get_tuesday_timetable_list(),
+            'wednesday': self.get_wednesday_timetable_list(),
+            'thursday': self.get_thursday_timetable_list(),
+            'friday': self.get_friday_timetable_list()
         }
 
     @staticmethod
@@ -351,6 +415,10 @@ class SchoolClass(db.Model, Model):
         print(self.id_timetable_class)
         timetable_class = db.session.query(TimetableClass).filter(self.id_timetable_class == TimetableClass.id).first()
         return timetable_class.get_all_day_timetable()
+
+    def get_timetable_class_list(self):
+        timetable_class = db.session.query(TimetableClass).filter(self.id_timetable_class == TimetableClass.id).first()
+        return timetable_class.get_week_dictionary_timetable()
 
     def set_timetable_class(self, new):
         self.id_timetable_class = new
