@@ -1,6 +1,6 @@
 from models import TimetableDay, TimetableClass
 
-#аргумент это номер класса(id его будущий)
+#  аргумент это номер класса(id его будущий)
 if TimetableClass.get_by_id(2) is None:
     timetable_class = TimetableClass(6, 7, 8, 9, 10)
     timetable_class.save()

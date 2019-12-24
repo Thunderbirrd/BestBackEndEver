@@ -14,8 +14,8 @@ if TimetableDay.get_by_id(33) is None:
     wednesday = TimetableDay(8, 4, 9, 12, 7, None, None, None)#Начиная с этого не менял
     wednesday.save()
 if TimetableDay.get_by_id(34) is None:
-    thursday = TimetableDay(1, 2, 10, 4, 8, None, None, None)
+    thursday = TimetableDay(7, 3, 4, 9, 10, 13, None, None)
     thursday.save()
 if TimetableDay.get_by_id(35) is None:
-    friday = TimetableDay(7, 3, 4, 9, 10, 13, None, None)
+    friday = TimetableDay(1, 2, 10, 4, 8, None, None, None)
     friday.save()
