@@ -359,7 +359,7 @@ class School(db.Model, Model):
     id = db.Column(db.Integer, primary_key=True, unique=True, autoincrement=True)
     name = db.Column(db.String, unique=True)
     address = db.Column(db.String)
-    classes = db.Column(db.String, db.ForeignKey(SchoolClass.name))
+    classes = db.Column(db.String)
     pupils = db.Column(db.String)
     teachers = db.Column(db.String)
 
