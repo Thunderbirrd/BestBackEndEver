@@ -354,6 +354,14 @@ class SchoolClass(db.Model, Model):
         self.id_timetable_class = new
         self.save()
 
+    def set_students_list(self, new):
+        new = str(new)
+        self.students_list = new
+
+    def add_student(self, new):
+        new = " " + str(new)
+        self.students_list += new
+
 
 class School(db.Model, Model):
     id = db.Column(db.Integer, primary_key=True, unique=True, autoincrement=True)
