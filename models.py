@@ -88,7 +88,7 @@ class Teacher(db.Model, Model):
 class Subject(db.Model, Model):
     id = db.Column(db.Integer, primary_key=True, unique=True)
     type = db.Column(db.String)  #subject || section || elective
-    students_list = db.Column(db.String, db.ForeignKey(Pupil.id))
+    students_list = db.Column(db.String)
     teacher_id = db.Column(db.Integer, db.ForeignKey(Teacher.id))
     homework = db.Column(db.String)
     name = db.Column(db.String)
