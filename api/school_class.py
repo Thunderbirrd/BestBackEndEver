@@ -55,7 +55,7 @@ def set_students_list():
             'resultCode': 0,
             'data': {
                 'name': class_name,
-                'new timetable_id': new_list
+                'new students_list': new_list
             }
         }
     )
@@ -72,7 +72,7 @@ def add_student():
             'resultCode': 0,
             'data': {
                 'name': class_name,
-                'new timetable_id': add_student
+                'new student id': new_student
             }
         }
     )
