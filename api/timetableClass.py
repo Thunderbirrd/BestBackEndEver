@@ -36,7 +36,7 @@ def set_day():
             'resultCode': 0,
             'data': {
                 'timetable_class_id': timetable_class_id,
-                'changed day': number_day,
+                'changed day number': number_day,
                 'new_day_id': new_day_id
             }
         }
