@@ -33,7 +33,7 @@ def set_homework():
     )
 
 
-@app.route("/timetable/get_homework", methods=["GET"])
+@app.route("/timetable/get_homework", methods=["PUT"])
 def get_homework():
     name_subject = request.form.get("subject")
     class_ = str(request.form.get("class"))
@@ -41,7 +41,7 @@ def get_homework():
     return subject.get_hw()
 
 
-@app.route("/timetable/get_students_list", methods=["GET"])
+@app.route("/timetable/get_students_list", methods=["PUT"])
 def get_students_list():
     name_subject = request.form.get("subject")
     class_ = str(request.form.get("class"))
@@ -49,7 +49,7 @@ def get_students_list():
     return subject.get_students_list()
 
 
-@app.route("/timetable/get_room", methods=["GET"])
+@app.route("/timetable/get_room", methods=["PUT"])
 def get_room():
     name_subject = request.form.get("subject")
     class_ = str(request.form.get("class"))
@@ -57,7 +57,7 @@ def get_room():
     return subject.get_class()
 
 
-@app.route("/timetable/set_room", methods=["GET"])
+@app.route("/timetable/set_room", methods=["PUT"])
 def set_room():
     name_subject = request.form.get("subject")
     class_ = str(request.form.get("class"))
