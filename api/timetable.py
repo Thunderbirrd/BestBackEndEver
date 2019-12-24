@@ -17,7 +17,7 @@ def get_timetable_pupil(id_pupil):
 def set_homework():
     new_homework = request.form.get("homework")
     name_subject = request.form.get("name_subject")
-    class_number = str(request.form.get("class") + "a")
+    class_number = str(request.form.get("class"))
     subject = db.session.query(Subject).filter(name_subject == Subject.name and class_number == Subject.school_class_name).first()
     subject.set_homework(new_homework)
 
