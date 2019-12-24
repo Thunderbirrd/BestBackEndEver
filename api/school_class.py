@@ -7,21 +7,21 @@ from models import SchoolClass
 
 
 @app.route("/school_class/get_students_list", methods=["PUT"])
-def get_homework():
+def get_students_list():
     class_name = request.form.get("name")
     subject = db.session.query(SchoolClass).filter(class_name == SchoolClass.name).first()
     return subject.get_students_list()
 
 
 @app.route("/school_class/get_list_parents", methods=["PUT"])
-def get_homework():
+def get_list_parents():
     class_name = request.form.get("name")
     subject = db.session.query(SchoolClass).filter(class_name == SchoolClass.name).first()
     return subject.get_list_parents()
 
 
 @app.route("/school_class/get_timetable_class", methods=["PUT"])
-def get_homework():
+def get_timetable_class():
     class_name = request.form.get("name")
     subject = db.session.query(SchoolClass).filter(class_name == SchoolClass.name).first()
     return subject.get_timetable_class()
