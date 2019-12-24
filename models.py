@@ -348,6 +348,7 @@ class SchoolClass(db.Model, Model):
         return list_parents
 
     def get_timetable_class(self):
+        print(self.id_timetable_class)
         timetable_class = db.session.query(TimetableClass).filter(self.id_timetable_class == TimetableClass.id).first()
         return timetable_class.get_all_day_timetable()
 

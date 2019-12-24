@@ -7,7 +7,11 @@ from models import TimetableDay
 
 
 @app.route("/timetableDay/set", methods=["POST"])
-def set_lesson(id_lesson, number_lesson, new_lesson):
+def set_lesson():
+    id_lesson = request.form.get("id_lesson")
+    number_lesson = request.form.get("number_lesson")
+    new_lesson = request.form.get("new_lesson")
+
     if number_lesson == 1:
         timetable_day = TimetableDay.get_by_id(id_lesson)
 
