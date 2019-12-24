@@ -355,27 +355,6 @@ class SchoolClass(db.Model, Model):
         self.save()
 
 
-class HomeworkClassBySubject(db.Model, Model):
-    id = db.Column(db.Integer, unique=True, primary_key=True, autoincrement=True)
-    name_of_class = db.Column(db.String, db.ForeignKey(SchoolClass.name))
-    id_of_teacher = db.Column(db.String, db.ForeignKey(Subject.teacher_id))
-    name_of_subject = db.Column(db.String, db.ForeignKey(Subject.name))
-    text_homework = db.Column(db.String)
-
-    def __init__(self, name_of_class, id_of_teacher, name_of_subject, text_homework):
-        self.name_of_class = name_of_class
-        self.id_of_teacher = id_of_teacher
-        self.name_of_subject = name_of_subject
-        self.text_homework = text_homework
-
-    def get_homework(self):
-        return self.text_homework
-
-    def set_homework(self, new_homework):
-        self.text_homework = new_homework
-        self.save()
-
-
 class School(db.Model, Model):
     id = db.Column(db.Integer, primary_key=True, unique=True, autoincrement=True)
     name = db.Column(db.String, unique=True)
