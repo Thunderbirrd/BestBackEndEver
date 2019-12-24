@@ -1,8 +1,9 @@
 from models import TimetableDay, TimetableClass
 
 if TimetableClass.get_by_id(7) is None:
-    timetable_Day = TimetableClass(31, 32, 33, 34, 35)
+    timetable_day = TimetableClass(31, 32, 33, 34, 35)
     timetable_day.save()
+
 if TimetableDay.get_by_id(31) is None:
     monday = TimetableDay(3, 7, 1, 10, 9, 18, 14, None)
     monday.save()

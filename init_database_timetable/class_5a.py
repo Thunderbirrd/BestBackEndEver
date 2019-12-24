@@ -1,7 +1,7 @@
 from models import TimetableDay, TimetableClass
 
 if TimetableClass.get_by_id(5) is None:
-    timetable_Day = TimetableClass(21, 22, 23, 24, 25)
+    timetable_day = TimetableClass(21, 22, 23, 24, 25)
     timetable_day.save()
 
 if TimetableDay.get_by_id(21) is None:
