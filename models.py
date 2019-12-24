@@ -94,8 +94,8 @@ class Subject(db.Model, Model):
     name = db.Column(db.String)
     classroom = db.Column(db.String)
 
-    def __init__(self, type, name, students_list, teacher_id, room):
-        self.type = type
+    def __init__(self, type_, name, students_list, teacher_id, room):
+        self.type = type_
         self.name = name
         self.students_list = students_list
         self.homework = ""
