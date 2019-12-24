@@ -3,19 +3,19 @@ from models import TimetableDay, TimetableClass
 if TimetableClass.get_by_id(6) is None:
     timetable_day = TimetableClass(26, 27, 28, 29, 30)
     timetable_day.save()
-
+#97 - 116
 if TimetableDay.get_by_id(26) is None:
-    monday = TimetableDay(6, 7, 9, 10, 3, 18, None, None)
+    monday = TimetableDay(None, 97, 98, 99, 100, 101, None, None)
     monday.save()
 if TimetableDay.get_by_id(27) is None:
-    tuesday = TimetableDay(19, 20, 5, 2, 1, 4, None, None)
+    tuesday = TimetableDay(None, 102, 103, 104, 105, 106, 107, None)
     tuesday.save()
 if TimetableDay.get_by_id(28) is None:
-    wednesday = TimetableDay(8, 4, 9, 12, 7, None, None, None)
+    wednesday = TimetableDay(None, 108, 109, 110, 111, 112, None, None)
     wednesday.save()
 if TimetableDay.get_by_id(29) is None:
-    thursday = TimetableDay(1, 2, 10, 4, 8, None, None, None)
+    thursday = TimetableDay(None, 113, 114, 115, 116, 97, None, None)
     thursday.save()
 if TimetableDay.get_by_id(30) is None:
-    friday = TimetableDay(7, 3, 4, 9, 10, 13, None, None)
+    friday = TimetableDay(None, 98, 99, 100, 101, 102, 103, None)
     friday.save()
