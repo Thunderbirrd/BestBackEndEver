@@ -3,7 +3,7 @@ from flask import request, session
 from db import db
 import json
 
-from models import Parent, Pupil, Teacher
+from models import Parent, Pupil, Teacher, SchoolClass
 
 
 def auth():
@@ -144,6 +144,9 @@ def register():
             clas = request.form.get('clas')
             pupil = Pupil(name, surname, login, password, clas)
             pupil.save()
+
+            school_class = SchoolClass.get_class_by_name(clas)
+            school_class.add_student(pupil.id)
 
             session["auth"] = pupil.id
 

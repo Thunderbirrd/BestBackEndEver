@@ -1,4 +1,8 @@
-from models import TimetableDay, TimetableClass
+from models import TimetableDay, TimetableClass, SchoolClass
+
+if SchoolClass.get_class_by_name("11a") is None:
+    school_class = SchoolClass("11a", "", 7)
+    school_class.save()
 
 if TimetableClass.get_by_id(11) is None:
     timetable_day = TimetableClass(51, 52, 53, 54, 55)

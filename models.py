@@ -365,6 +365,10 @@ class SchoolClass(db.Model, Model):
         self.students_list += new
         self.save()
 
+    @staticmethod
+    def get_class_by_name(name):
+        return db.session.query(SchoolClass).filter(SchoolClass.name == name).first()
+
 
 class School(db.Model, Model):
     id = db.Column(db.Integer, primary_key=True, unique=True, autoincrement=True)
