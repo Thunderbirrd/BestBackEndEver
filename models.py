@@ -122,8 +122,8 @@ class Subject(db.Model, Model):
         self.save()
 
     @staticmethod
-    def get_by_name(name):
-        return db.session.query(Subject).filter(Subject.name == name).first()
+    def get_by_name_and_teacher(name, teacher_id):
+        return db.session.query(Subject).filter(Subject.name == name).filter(Subject.teacher_id == teacher_id).first()
 
 
 class Parent(db.Model, Model):
@@ -350,6 +350,7 @@ class SchoolClass(db.Model, Model):
 
 
 class HomeworkClassBySubject(db.Model, Model):
+    id = db.Column(db.Integer, unique=True, primary_key=True, autoincrement=True)
     name_of_class = db.Column(db.String, db.ForeignKey(SchoolClass.name))
     id_of_teacher = db.Column(db.String, db.ForeignKey(Subject.teacher_id))
     name_of_subject = db.Column(db.String, db.ForeignKey(Subject.name))
