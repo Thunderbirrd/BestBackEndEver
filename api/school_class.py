@@ -27,7 +27,7 @@ def get_homework():
     return subject.get_timetable_class()
 
 
-@app.route("/timetable/set_timetable_class", methods=["PUT"])
+@app.route("/school_class/set_timetable_class", methods=["PUT"])
 def set_timetable_class():
     class_name = request.form.get("name")
     new_id = request.form.get("new timetable")
@@ -44,7 +44,7 @@ def set_timetable_class():
     )
 
 
-@app.route("/timetable/set_students_list", methods=["PUT"])
+@app.route("/school_class/set_students_list", methods=["PUT"])
 def set_students_list():
     class_name = request.form.get("name")
     new_list = request.form.get("new list")
@@ -61,7 +61,7 @@ def set_students_list():
     )
 
 
-@app.route("/timetable/add_student", methods=["PUT"])
+@app.route("/school_class/add_student", methods=["PUT"])
 def add_student():
     class_name = request.form.get("name")
     new_student = request.form.get("new student")
