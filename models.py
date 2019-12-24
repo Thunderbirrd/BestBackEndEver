@@ -76,6 +76,10 @@ class Teacher(db.Model, Model):
         self.permit = self.login + str(random.randint(1, 10000000))
         self.is_admin = is_admin
 
+    def set_admin(self, is_ad):
+        self.is_admin = is_ad
+        self.save()
+
     @staticmethod
     def auth(login, password):
         return db.session.query(Teacher).filter(Teacher.login == login).filter(Teacher.password == password).first()
@@ -105,6 +109,17 @@ class Subject(db.Model, Model):
 
     def set_homework(self, new_homework):
         self.homework = new_homework
+        self.save()
+
+    def get_hw(self):
+        return self.homework
+
+    def get_class(self):
+        return self.classroom
+
+    def set_class(self, cl):
+        self.classroom = cl
+        self.save()
 
     @staticmethod
     def get_by_name(name):
@@ -115,7 +130,7 @@ class Parent(db.Model, Model):
     id = db.Column(db.Integer, primary_key=True, unique=True, autoincrement=True)
     name = db.Column(db.String)
     surname = db.Column(db.String)
-    child__id = db.Column(db.Integer, db.ForeignKey(Pupil.id))
+    child_id = db.Column(db.Integer, db.ForeignKey(Pupil.id))
     login = db.Column(db.String, unique=True)
     password = db.Column(db.String)
     position = db.Column(db.String)
@@ -125,7 +140,7 @@ class Parent(db.Model, Model):
         self.surname = surname
         self.login = login
         self.password = password
-        self.child = child_id
+        self.child_id = child_id
 
     child = db.relationship(Pupil)
 
@@ -178,6 +193,38 @@ class TimetableDay(db.Model, Model):
 
     def get_eighth_lesson(self):
         return db.session.query(Subject).filter(Subject.id == self.id_eighth_lesson).first()
+
+    def set_first(self, f):
+        self.id_first_lesson = f
+        self.save()
+
+    def set_second(self, s):
+        self.id_second_lesson = s
+        self.save()
+
+    def set_third(self, t):
+        self.id_third_lesson = t
+        self.save()
+
+    def set_fourth(self, f):
+        self.id_fourth_lesson = f
+        self.save()
+
+    def set_fifth(self, f):
+        self.id_fifth_lesson = f
+        self.save()
+
+    def set_sixth(self, s):
+        self.id_sixth_lesson = s
+        self.save()
+
+    def set_seventh(self, s):
+        self.id_seventh_lesson = s
+        self.save()
+
+    def set_eighth(self, e):
+        self.id_eighth_lesson = e
+        self.save()
 
     def get_all_lesson(self):
         first_lesson = self.get_first_lesson()
@@ -235,6 +282,26 @@ class TimetableClass(db.Model, Model):
     def get_friday_timetable(self):
         return db.session.query(TimetableDay).filter(TimetableDay.id == self.id_friday).first().get_all_lesson()
 
+    def set_monday(self, new):
+        self.id_monday = new
+        self.save()
+
+    def set_tuesday(self, new):
+        self.id_tuesday = new
+        self.save()
+
+    def set_wednesday(self, new):
+        self.id_wednesday = new
+        self.save()
+
+    def set_thursday(self, new):
+        self.id_thursday = new
+        self.save()
+
+    def set_friday(self, new):
+        self.id_friday = new
+        self.save()
+
     def get_all_day_timetable(self):
         return {
             'monday': self.get_monday_timetable(),
@@ -251,13 +318,13 @@ class TimetableClass(db.Model, Model):
 
 class SchoolClass(db.Model, Model):
     name = db.Column(db.String, primary_key=True, unique=True)
-    students_list = db.Column(db.String, db.ForeignKey(Pupil.id))
+    students_list = db.Column(db.String)
     teacher_id = db.Column(db.Integer, db.ForeignKey(Teacher.id))
     id_timetable_class = db.Column(db.Integer, db.ForeignKey(TimetableClass.id))
 
     def __init__(self, name, students_list, teacher_id):
         self.name = name
-        self.students_list = list(students_list)
+        self.students_list = students_list
         self.teacher_id = teacher_id
 
     teacher = db.relationship(Teacher)
@@ -269,13 +336,17 @@ class SchoolClass(db.Model, Model):
         list_parents = []
 
         for student in list(str(self.students_list).split(" ")):
-            list_parents.append(db.session.query(Parent).filter(Parent.child == student.id).first())
+            list_parents.append(db.session.query(Parent).filter(Parent.child_id == int(student)).first())
 
         return list_parents
 
     def get_timetable_class(self):
         timetable_class = db.session.query(TimetableClass).filter(self.id_timetable_class == TimetableClass.id).first()
         return timetable_class.get_all_day_timetable()
+
+    def set_timetable_class(self, new):
+        self.id_timetable_class = new
+        self.save()
 
 
 class HomeworkClassBySubject(db.Model, Model):
@@ -295,6 +366,7 @@ class HomeworkClassBySubject(db.Model, Model):
 
     def set_homework(self, new_homework):
         self.text_homework = new_homework
+        self.save()
 
 
 class School(db.Model, Model):
@@ -302,8 +374,8 @@ class School(db.Model, Model):
     name = db.Column(db.String, unique=True)
     address = db.Column(db.String)
     classes = db.Column(db.String, db.ForeignKey(SchoolClass.name))
-    pupils = db.Column(db.String, db.ForeignKey(Pupil.id))
-    teachers = db.Column(db.String, db.ForeignKey(Teacher.id))
+    pupils = db.Column(db.String)
+    teachers = db.Column(db.String)
 
     def __init__(self, name, address, classes, teachers, pupils):
         self.name = name
