@@ -266,7 +266,7 @@ class TimetableClass(db.Model, Model):
     id_thursday = db.Column(db.Integer, db.ForeignKey(TimetableDay.id))
     id_friday = db.Column(db.Integer, db.ForeignKey(TimetableDay.id))
 
-    def __int__(self, id1, id2, id3, id4, id5):
+    def __init__(self, id1, id2, id3, id4, id5):
         self.id_monday = id1
         self.id_tuesday = id2
         self.id_wednesday = id3
