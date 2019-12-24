@@ -7,6 +7,17 @@ from models import Parent, Pupil, Teacher
 #сюда будем записывать импорты файлов нашего api
 import api.auth
 import api.timetable
+import init_database_timetable.class_1a
+import init_database_timetable.class_2a
+import init_database_timetable.class_3a
+import init_database_timetable.class_4a
+import init_database_timetable.class_5a
+import init_database_timetable.class_6a
+import init_database_timetable.class_7a
+import init_database_timetable.class_8a
+import init_database_timetable.class_9a
+import init_database_timetable.class_10a
+import init_database_timetable.class_11a
 
 
 db.create_all()
