@@ -1,6 +1,6 @@
 from models import TimetableDay, TimetableClass, SchoolClass
 
-if SchoolClass.get_class_by_name("5a") is None:
+if SchoolClass.get_class_by_name("9a") is None:
     school_class = SchoolClass("9a", "", 5)
     school_class.save()
 

@@ -2,7 +2,9 @@ from app import app
 from flask import request, session
 from db import db
 import json
-from models import Parent, Pupil, Teacher
+from models import Parent, Pupil, Teacher, SchoolClass
+
+db.create_all()
 
 #сюда будем записывать импорты файлов нашего api
 import api.auth
@@ -19,8 +21,6 @@ import init_database_timetable.class_9a
 import init_database_timetable.class_10a
 import init_database_timetable.class_11a
 
-
-db.create_all()
 
 import init_database
 
