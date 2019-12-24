@@ -323,7 +323,8 @@ class TimetableClass(db.Model, Model):
 
 
 class SchoolClass(db.Model, Model):
-    name = db.Column(db.String, primary_key=True, unique=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True, unique=True)
+    name = db.Column(db.String, unique=True)
     students_list = db.Column(db.String)
     teacher_id = db.Column(db.Integer, db.ForeignKey(Teacher.id))
     id_timetable_class = db.Column(db.Integer, db.ForeignKey(TimetableClass.id))
