@@ -5,4 +5,3 @@ import json
 
 @app.route("/timetableDay/set", methods=["POST"])
 def setLesson(number_lesson, new_lesson):
-    
