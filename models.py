@@ -357,10 +357,12 @@ class SchoolClass(db.Model, Model):
     def set_students_list(self, new):
         new = str(new)
         self.students_list = new
+        self.save()
 
     def add_student(self, new):
         new = " " + str(new)
         self.students_list += new
+        self.save()
 
 
 class School(db.Model, Model):
