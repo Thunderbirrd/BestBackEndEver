@@ -9,6 +9,7 @@ db.create_all()
 #сюда будем записывать импорты файлов нашего api
 import api.auth
 import api.timetable
+import api.marks
 import init_database_timetable.class_1a
 import init_database_timetable.class_2a
 import init_database_timetable.class_3a

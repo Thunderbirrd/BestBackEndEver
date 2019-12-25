@@ -43,8 +43,40 @@ class Pupil(db.Model, Model):
         self.password = password
         self.position = "Pupil"
         self.permit = self.login + str(random.randint(1, 10000000))
-        self.marks = ""
+        self.marks = Pupil.init_marks(clas)
         self.clas = clas
+
+    @staticmethod
+    def init_marks(clas):
+        arr_marks = []
+
+        arr_subject_unique = db.session.query(Subject).filter(Subject.school_class_name == clas).all()
+
+        print(arr_subject_unique)
+
+        for subject in arr_subject_unique:
+            arr_marks.append({
+                "arr_marks": [],
+                "name": subject.name
+            })
+
+        print(arr_marks)
+
+        return json.dumps(arr_marks)
+
+    def get_marks(self):
+        return self.marks
+
+    def add_marks(self, name_subject, new_mark):
+        subjects_data_mark = json.loads(self.marks)
+
+        for i in range(0, len(subjects_data_mark)):
+            if name_subject == subjects_data_mark[i].get('name'):
+                subjects_data_mark[i].get("arr_marks").append(new_mark)
+                break
+
+        self.marks = json.dumps(subjects_data_mark)
+        self.save()
 
     @staticmethod
     def auth(login, password):
@@ -145,6 +177,20 @@ class Subject(db.Model, Model):
             .filter(Subject.teacher_id == teacher_id)\
             .filter(Subject.school_class_name == school_class_name)\
             .first()
+
+
+class Marks(db.Model, Model):
+    id = db.Column(db.Integer, unique=True, autoincrement=True, primary_key=True)
+    id_subject = db.Column(db.Integer, db.ForeignKey(Subject.id))
+    marks = db.Column(db.String)#каждая оценка через пробел
+
+    def __init__(self, id_subject, marks):
+        self.id_subject = id_subject
+        self.marks = marks
+
+    def add_mark(self, new_mark):
+        self.marks += " " + new_mark
+        self.save()
 
 
 class Parent(db.Model, Model):
