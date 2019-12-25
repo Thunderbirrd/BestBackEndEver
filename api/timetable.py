@@ -16,7 +16,7 @@ def get_timetable_pupil(id_pupil):
     return json.dumps(timetable)
 
 
-@app.route("/timetable/timetableClass/teacher", methods=["PUT"])
+@app.route("/timetable/teacher", methods=["PUT"])
 def get_timetable_teacher():
     id_teacher = request.form.get("teacher_id")
     teacher = db.session.query(Teacher).filter(id_teacher == Teacher.id).first()
