@@ -16,7 +16,7 @@ def get_timetable_pupil(id_pupil):
     return json.dumps(timetable)
 
 
-@app.route("/timetable/timetableClass/teacher", methods=["PUT"])
+@app.route("/timetable/teacher", methods=["PUT"])
 def get_timetable_teacher():
     id_teacher = request.form.get("teacher_id")
     teacher = db.session.query(Teacher).filter(id_teacher == Teacher.id).first()
@@ -115,8 +115,8 @@ def get_timetable_teacher():
 def set_homework():
     new_homework = request.form.get("homework")
     name_subject = request.form.get("name_subject")
-    class_number = str(request.form.get("class"))
-    subject = db.session.query(Subject).filter(name_subject == Subject.name and class_number == Subject.school_class_name).first()
+    class_ = str(request.form.get("class"))
+    subject = db.session.query(Subject).filter(name_subject == Subject.name and class_ == Subject.school_class_name).first()
     subject.set_homework(new_homework)
 
     return json.dumps(
@@ -125,7 +125,7 @@ def set_homework():
             'data': {
                 'homework': new_homework,
                 'name_subject': name_subject,
-                'class': class_number
+                'class': class_
             }
         }
     )
