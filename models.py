@@ -320,7 +320,9 @@ class TimetableDay(db.Model, Model):
         subject_arr = []
 
         for subject in id_arr:
-            if subject is None: continue
+            if subject is None:
+                subject_arr.append("")
+                continue
 
             dictionary = {
                 "id": subject.get_id(),
