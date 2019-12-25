@@ -71,7 +71,7 @@ def get_timetable_teacher():
             if a.count(s) == 0:
                 schedule[s] = "5"
             else:
-                schedule[s] = " 5"
+                schedule[s] += " 5"
 
         day6 = list(db.session.query(TimetableDay).filter(subject.id == TimetableDay.id_sixth_lesson).all())
         for day in day6:
