@@ -29,9 +29,9 @@ def get_timetable_teacher():
             s = f"{day_id % 5}"
             a = list(schedule.keys())
             if a.count(s) == 0:
-                schedule[s] = 1
+                schedule[s] = "1"
             else:
-                schedule[s] = list(schedule[s]).append(1)
+                schedule[s] += " 1"
 
         day2 = list(db.session.query(TimetableDay).filter(subject.id == TimetableDay.id_second_lesson).all())
         for day in day2:
@@ -39,9 +39,9 @@ def get_timetable_teacher():
             s = f"{day_id % 5}"
             a = list(schedule.keys())
             if a.count(s) == 0:
-                schedule[s] = 2
+                schedule[s] = "2"
             else:
-                schedule[s] = list(schedule[s]).append(2)
+                schedule[s] += " 2"
 
         day3 = list(db.session.query(TimetableDay).filter(subject.id == TimetableDay.id_third_lesson).all())
         for day in day3:
@@ -49,9 +49,9 @@ def get_timetable_teacher():
             s = f"{day_id % 5}"
             a = list(schedule.keys())
             if a.count(s) == 0:
-                schedule[s] = 3
+                schedule[s] = "3"
             else:
-                schedule[s] = list(schedule[s]).append(3)
+                schedule[s] += " 3"
 
         day4 = list(db.session.query(TimetableDay).filter(subject.id == TimetableDay.id_fourth_lesson).all())
         for day in day4:
@@ -59,9 +59,9 @@ def get_timetable_teacher():
             s = f"{day_id % 5}"
             a = list(schedule.keys())
             if a.count(s) == 0:
-                schedule[s] = 4
+                schedule[s] = "4"
             else:
-                schedule[s] = list(schedule[s]).append(4)
+                schedule[s] += " 4"
 
         day5 = list(db.session.query(TimetableDay).filter(subject.id == TimetableDay.id_fifth_lesson).all())
         for day in day5:
@@ -69,9 +69,9 @@ def get_timetable_teacher():
             s = f"{day_id % 5}"
             a = list(schedule.keys())
             if a.count(s) == 0:
-                schedule[s] = 5
+                schedule[s] = "5"
             else:
-                schedule[s] = list(schedule[s]).append(5)
+                schedule[s] = " 5"
 
         day6 = list(db.session.query(TimetableDay).filter(subject.id == TimetableDay.id_sixth_lesson).all())
         for day in day6:
@@ -79,9 +79,9 @@ def get_timetable_teacher():
             s = f"{day_id % 5}"
             a = list(schedule.keys())
             if a.count(s) == 0:
-                schedule[s] = 6
+                schedule[s] = "6"
             else:
-                schedule[s] = list(schedule[s]).append(6)
+                schedule[s] += " 6"
 
         day7 = list(db.session.query(TimetableDay).filter(subject.id == TimetableDay.id_seventh_lesson).all())
         for day in day7:
@@ -89,9 +89,9 @@ def get_timetable_teacher():
             s = f"{day_id % 5}"
             a = list(schedule.keys())
             if a.count(s) == 0:
-                schedule[s] = 7
+                schedule[s] = "7"
             else:
-                schedule[s] = list(schedule[s]).append(7)
+                schedule[s] += " 7"
 
         day8 = list(db.session.query(TimetableDay).filter(subject.id == TimetableDay.id_eighth_lesson).all())
         for day in day8:
@@ -99,14 +99,14 @@ def get_timetable_teacher():
             s = f"{day_id % 5}"
             a = list(schedule.keys())
             if a.count(s) == 0:
-                schedule[s] = 8
+                schedule[s] = "8"
             else:
-                schedule[s] = list(schedule[s]).append(8)
+                schedule[s] += " 8"
 
     return json.dumps(
         {
             'teacher id': id_teacher,
-            'timetable': json.dumps(schedule)
+            'timetable': schedule
         }
     )
 
