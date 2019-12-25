@@ -21,7 +21,6 @@ def get_timetable_teacher():
     id_teacher = request.form.get("teacher id")
     teacher = db.session.query(Teacher).filter(id_teacher == Teacher.id).first()
     subjects = list(db.session.query(Subject).filther(id_teacher == Subject.teacher_id).all())
-    qual = teacher.qualification
     schedule = {}
     for subject in subjects:
         day1 = list(db.session.query(TimetableDay).filther(subject.id == TimetableDay.id_first_lesson).all())
@@ -91,7 +90,7 @@ def get_timetable_teacher():
     return json.dumps(
         {
             'teacher id': id_teacher,
-            'timetable': schedule
+            'timetable': json.dumps(schedule)
         }
     )
 
