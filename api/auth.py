@@ -16,7 +16,7 @@ def logout():
     return "somebody"
 
 
-@app.route("/auth/pupil_login", methods=["GET"])
+@app.route("/auth/pupil_login", methods=["POST"])
 def pupil_login():
 
     if request.form:
@@ -44,7 +44,7 @@ def pupil_login():
             return "Неправильный логин или пароль"
 
 
-@app.route("/auth/teacher_login", methods=["GET"])
+@app.route("/auth/teacher_login", methods=["POST"])
 def teacher_login():
     if request.form:
         login = request.form.get("login")
@@ -70,7 +70,7 @@ def teacher_login():
             return "Неправильный логин или пароль"
 
 
-@app.route("/auth/parent_login", methods=["GET"])
+@app.route("/auth/parent_login", methods=["POST"])
 def parent_login():
     if request.form:
         login = request.form.get("login")

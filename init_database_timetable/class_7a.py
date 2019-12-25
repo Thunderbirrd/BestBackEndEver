@@ -10,17 +10,17 @@ if TimetableClass.get_by_id(7) is None:
 
 #117 - 136
 if TimetableDay.get_by_id(31) is None:
-    monday = TimetableDay(117, 118, 119, 120, 121, 122, 123, None)
+    monday = TimetableDay(None, None, 117, 118, 119, 120, 121, None)
     monday.save()
 if TimetableDay.get_by_id(32) is None:
-    tuesday = TimetableDay(124, 125, 126, 127, 128, 129, None, None)
+    tuesday = TimetableDay(None, None, 122, 123, 124, 125, 126, 127)
     tuesday.save()
 if TimetableDay.get_by_id(33) is None:
-    wednesday = TimetableDay(130, 131, 132, 133, 134, None, None, None)#Начиная с этого не менял
+    wednesday = TimetableDay(None, None, 128, 129, 130, 131, 132, None)#Начиная с этого не менял
     wednesday.save()
 if TimetableDay.get_by_id(34) is None:
-    thursday = TimetableDay(135, 136, 117, 118, 119, 120, None, None)
+    thursday = TimetableDay(None, None, 133, 134, 135, 136, 117, None)
     thursday.save()
 if TimetableDay.get_by_id(35) is None:
-    friday = TimetableDay(121, 122, 123, 124, 125, None, None, None)
+    friday = TimetableDay(None, None, 118, 119, 120, 121, 122, 123)
     friday.save()

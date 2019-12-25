@@ -10,21 +10,21 @@ if TimetableClass.get_by_id(11) is None:
 
 #197 - 216
 if TimetableDay.get_by_id(51) is None:
-    monday = TimetableDay(216, 215, 214, 213, 212, 211, None, None)
+    monday = TimetableDay(199, 200, 201, None, None, None, 197, 198)
     monday.save()
 
 if TimetableDay.get_by_id(52) is None:
-    monday = TimetableDay(210, 209, 208, 207, 206, 205, 204, None)
+    monday = TimetableDay(204, 205, 206, 207, None, None, 202, 203)
     monday.save()
 
 if TimetableDay.get_by_id(53) is None:
-    monday = TimetableDay(203, 202, 201, 200, 199, 198, None, None)
+    monday = TimetableDay(210, 211, 212, None, None, None, 208, 209)
     monday.save()
 
 if TimetableDay.get_by_id(54) is None:
-    monday = TimetableDay(197, 216, 215, 214, 213, 212, 211, None)
+    monday = TimetableDay(215, 216, 197, None, None, None, 213, 214)
     monday.save()
 
 if TimetableDay.get_by_id(55) is None:
-    monday = TimetableDay(210, 209, 208, 207, 206, 205, None, None)
+    monday = TimetableDay(200, 201, 202, 203, None, None, 198, 199)
     monday.save()

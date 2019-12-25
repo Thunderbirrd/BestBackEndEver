@@ -9,22 +9,24 @@ if TimetableClass.get_by_id(1) is None:
     timetable_class = TimetableClass(1, 2, 3, 4, 5)
     timetable_class.save()
 
+#69 - 75
+
 if TimetableDay.get_by_id(1) is None:
-    monday = TimetableDay(21, 22, 23, 24, None, None, None, None)
+    monday = TimetableDay(69, 70, 71, 72, None, None, None, None)
     monday.save()
 
 if TimetableDay.get_by_id(2) is None:
-    tuesday = TimetableDay(21, 27, 26, 25, None, None, None, None)
+    tuesday = TimetableDay(73, 74, 75, 69, None, None, None, None)
     tuesday.save()
 
 if TimetableDay.get_by_id(3) is None:
-    wednesday = TimetableDay(22, 23, 24, 25, None, None, None, None)
+    wednesday = TimetableDay(70, 71, 72, 73, None, None, None, None)
     wednesday.save()
 
 if TimetableDay.get_by_id(4) is None:
-    thursday = TimetableDay(26, 27, 21, 22, None, None, None, None)
+    thursday = TimetableDay(74, 75, 69, 70, None, None, None, None)
     thursday.save()
 
 if TimetableDay.get_by_id(5) is None:
-    friday = TimetableDay(23, 24, 25, 26, None, None, None, None)
+    friday = TimetableDay(71, 72, 73, 74, None, None, None, None)
     friday.save()
